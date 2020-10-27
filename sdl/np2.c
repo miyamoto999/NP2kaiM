@@ -57,7 +57,7 @@ static const char appname[] =
 #endif
 ;
 
-#ifdef __MACOSX__
+#if !defined(__LIBRETRO__) && defined(__MACOSX__) && SDL_MAJOR_VERSION == 2
 #include <SDL_syswm.h>
 #include "macOS/touchbar.h"
 #endif
@@ -630,7 +630,7 @@ int np2_main(int argc, char *argv[]) {
 		goto np2main_err4;
 	}
 
-#ifdef __MACOSX__
+#if !defined(__LIBRETRO__) && defined(__MACOSX__) && SDL_MAJOR_VERSION == 2
 	SDL_SysWMinfo wmInfo;
 	SDL_VERSION(&wmInfo.version);
 	SDL_GetWindowWMInfo(scrnmng_getWindow(), &wmInfo);

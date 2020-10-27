@@ -752,6 +752,8 @@ void vram_drawAnkChar(const VRAMHDL vram, const int posx, const int posy,
 }
 #endif
 
+#if !defined(__LIBRETRO__) && defined(__MACOSX__) && SDL_MAJOR_VERSION == 2
 SDL_Window *scrnmng_getWindow(void) {
 	return s_window;
 }
+#endif

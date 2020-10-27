@@ -89,7 +89,9 @@ void scrnmng_bltwab(void);
 
 BOOL scrnmng_toggleFullscreen();
 BOOL scrnmng_fullscreen(BOOL val);
+#if !defined(__LIBRETRO__) && defined(__MACOSX__) && SDL_MAJOR_VERSION == 2
 SDL_Window *scrnmng_getWindow(void);
+#endif
 
 void vram_drawAnkChar(const VRAMHDL vram, const int posx, const int posy,
 			const OEMCHAR code, const UINT32 forecolor, const UINT32 backcolor);

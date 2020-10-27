@@ -57,6 +57,11 @@ static const char appname[] =
 #endif
 ;
 
+#ifdef __MACOSX__
+#include <SDL_syswm.h>
+#include "macOS/touchbar.h"
+#endif
+
 NP2OSCFG np2oscfg = {
 	0,			/* NOWAIT */
 	0,			/* DRAW_SKIP */
@@ -624,6 +629,13 @@ int np2_main(int argc, char *argv[]) {
 	if (scrnmng_create(0) != SUCCESS) {
 		goto np2main_err4;
 	}
+
+#ifdef __MACOSX__
+	SDL_SysWMinfo wmInfo;
+	SDL_VERSION(&wmInfo.version);
+	SDL_GetWindowWMInfo(scrnmng_getWindow(), &wmInfo);
+	touchbar_init(wmInfo.info.cocoa.window, touchbar_table);
+#endif
 
 	soundmng_initialize();
 	commng_initialize();

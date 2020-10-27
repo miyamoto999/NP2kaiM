@@ -414,11 +414,13 @@ static const MSYSITEM s_screen[] = {
 
 static const MSYSITEM s_keybd[] = {
 #if !defined(__LIBRETRO__)
+/*
 		{str_key_Stop,		NULL,		MID_KEY_STOP,			0},
 		{str_key_Copy,		NULL,		MID_KEY_COPY,			0},
 		{str_key_Kana,		NULL,		MID_KEY_KANA,			0},
 		{str_key_Ins,		NULL,		MID_KEY_INS,			0},
 		{NULL,			NULL,		MID_STATIC,			MENU_SEPARATOR},
+*/
 		{str_keyrepeat,	NULL,		MID_KEYREPEAT,		0},
 		{NULL,			NULL,		MID_STATIC,			MENU_SEPARATOR},
 		{str_keyboard_106,	NULL,		MID_KEYBOARD_106,		0},

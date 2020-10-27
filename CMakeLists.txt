@@ -639,6 +639,18 @@ if(NOT CMAKE_CROSSCOMPILING)
 		set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${NP2kai_SOURCE_DIR}/cmake/FindWDK/cmake")
 		find_package(WDK REQUIRED)
 	endif()
+
+	# MacBook Pro Touchbar
+	if(NOT MSVC_VERSION)
+		if(CMAKE_HOST_APPLE)
+			list(APPEND NP2kai_SDL_UNIX_sources "sdl/macOS/AppDelegate.m")
+			list(APPEND NP2kai_SDL_UNIX_sources "sdl/macOS/tbtable.c")
+			list(APPEND NP2kai_SDL_UNIX_sources "sdl/macOS/touchbar.m")
+			list(APPEND NP2kai_SDL_UNIX_include_dirs "sdl/macOS")
+			set(CMAKE_EXE_LINKER_FLAGS "-framework AppKit")
+
+		endif()
+	endif()
 endif()
 
 if(CMAKE_CROSSCOMPILING)

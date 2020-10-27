@@ -1,4 +1,4 @@
-2020/10/24更新
+2020/10/28更新
 
 [Neko Project II kai](https://github.com/AZO234/NP2kai)をforkして、MacBook Proの内蔵キーボードでそこそこ使いやすいようにキーマップを変更して勝手に追加してみた。(SDLのみ)
 
@@ -51,7 +51,18 @@ Macキーボードの()内はApple純正フルキーボードにあるキー
 
 - 元々、MacBook Proでそこそこ使いやすいようなキーマップを追加して、macOSでビルドした時のみ有効にしていたんだけど、ノートPCなどのミニキーボードでも有効そうなのでmacOS関係なく使えるようにした。(SDLのみ)
 
+2020/10/28更新
+
+- Touch Barに対応してみた。(SDL2-macOSのみ)
+macOSの設定でTouch Barに表示する項目でAppコントロールを選んでると次のようにTouch BarがなってSTOP、COPYキーなどがTouch Barから入力できるようになる。
+
+![](doc/touchbar.png)
+
+
 ## 更新履歴(うちで勝手に更新してるヤツ)
+- 2020/10/28
+  - \[SDL2-macOS] MacBook ProのTouch Barに対応。
+
 - 2020/10/24
   - \[SDL] テンキーモードを追加
 

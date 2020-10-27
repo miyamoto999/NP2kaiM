@@ -751,3 +751,7 @@ void vram_drawAnkChar(const VRAMHDL vram, const int posx, const int posy,
 	}
 }
 #endif
+
+SDL_Window *scrnmng_getWindow(void) {
+	return s_window;
+}

@@ -89,6 +89,7 @@ void scrnmng_bltwab(void);
 
 BOOL scrnmng_toggleFullscreen();
 BOOL scrnmng_fullscreen(BOOL val);
+SDL_Window *scrnmng_getWindow(void);
 
 void vram_drawAnkChar(const VRAMHDL vram, const int posx, const int posy,
 			const OEMCHAR code, const UINT32 forecolor, const UINT32 backcolor);

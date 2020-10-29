@@ -528,6 +528,8 @@ static const PFTBL s_IniItems[] =
 	PFVAL("use_hdrv", PFTYPE_BOOL,		&np2cfg.hdrvenable),
 	PFSTR("hdrvroot", PFTYPE_STR,		np2cfg.hdrvroot),
 	PFVAL("hdrv_acc", PFTYPE_UINT8,		&np2cfg.hdrvacc),
+	// Flag to create file with lowercase file name
+	PFVAL("hdrvflower", PFTYPE_BOOL,	&np2cfg.hdrv_flower),
 #endif
 
 	PFSTR("pc_model", PFTYPE_STR,		np2cfg.model),

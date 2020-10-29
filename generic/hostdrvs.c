@@ -451,6 +451,9 @@ UINT hostdrvs_appendname(HDRVPATH *phdp, const char *lpFcbname)
 #if defined(OSLANG_EUC) || defined(OSLANG_UTF8) || defined(OSLANG_UCS2)
 	OEMCHAR oemname[64];
 #endif
+	char lower[16];
+	unsigned char ch;
+	UINT len;
 
 	if (lpFcbname[0] == ' ')
 	{
@@ -480,11 +483,28 @@ UINT hostdrvs_appendname(HDRVPATH *phdp, const char *lpFcbname)
 			}
 		}
 		*p = '\0';
+		if(np2cfg.hdrv_flower) {
+			len = strlen(szDosName);
+			for(i = 0; i < len; i++) {
+				ch = szDosName[i];
+				if((ch >= 0x81 && ch <= 0x9f)
+						|| (ch >= 0xe0 && ch <= 0xfc)) {
+					lower[i] = szDosName[i];
+					i++;
+					lower[i] = szDosName[i];
+				} else {
+					lower[i] = tolower(szDosName[i]);
+				}
+			}
+			lower[i] = 0;
+		} else {
+			strcpy(lower, szDosName);
+		}
 #if defined(OSLANG_EUC) || defined(OSLANG_UTF8) || defined(OSLANG_UCS2)
-		oemtext_sjistooem(oemname, NELEMENTS(oemname), szDosName, (UINT)-1);
+		oemtext_sjistooem(oemname, NELEMENTS(oemname), lower, (UINT)-1);
 		file_catname(phdp->szPath, oemname, NELEMENTS(phdp->szPath));
 #else
-		file_catname(phdp->szPath, szDosName, NELEMENTS(phdp->szPath));
+		file_catname(phdp->szPath, lower, NELEMENTS(phdp->szPath));
 #endif
 		return ERR_FILENOTFOUND;
 	}

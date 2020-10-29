@@ -602,6 +602,8 @@ static const INITBL iniitem[] = {
 	{OEMTEXT("use_hdrv"), INITYPE_BOOL,	&np2cfg.hdrvenable,	0},
 	{OEMTEXT("hdrvroot"), INITYPE_STR,	&np2cfg.hdrvroot,	MAX_PATH},
 	{OEMTEXT("hdrv_acc"), INITYPE_UINT8,	&np2cfg.hdrvacc,	0},
+	// Flag to create file with lowercase file name
+	{OEMTEXT("hdrvflower"), INITYPE_BOOL,	&np2cfg.hdrv_flower,	0},
 #endif
 
 	{OEMTEXT("pc_model"), INITYPE_STR,	np2cfg.model,		sizeof(np2cfg.model)},

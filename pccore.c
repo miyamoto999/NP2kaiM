@@ -216,7 +216,10 @@ const OEMCHAR np2version[] = OEMTEXT(NP2KAI_GIT_TAG " " NP2KAI_GIT_HASH);
 					{{1, 3, 8, 0, 0, 255, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}},
 				},
 #endif
+				// Setting keyrepeat
 				0, 500, 50,
+				// hostdrive:flag to create file with lowercase file name.
+				0
 	};
 
 	PCCORE	pccore = {	PCBASECLOCK25, PCBASEMULTIPLE,

@@ -330,6 +330,9 @@ struct tagNP2Config
 	UINT8	keyrepeat_enable;
 	UINT16	keyrepeat_delay;		// Keyrepeat delay time(ms)
 	UINT16	keyrepeat_interval;		// Keyrepeat interval time(ms)
+
+	// hostdrive:flag to create file with lowercase file name. 
+	UINT8 hdrv_flower;
 };
 typedef struct tagNP2Config  NP2CFG;		/*!< The define of config */
 

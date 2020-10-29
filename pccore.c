@@ -135,7 +135,7 @@ const OEMCHAR np2version[] = OEMTEXT(NP2KAI_GIT_TAG " " NP2KAI_GIT_HASH);
 #endif	/* SUPPORT_SOUND_SB16 */
 
 #if defined(SUPPORT_FMGEN)
-				3, {0x0c, 0x0c, 0x08, 0x06, 0x03, 0x0c}, 100, 64, 64, 64, 90, 64,
+				3, {0x0c, 0x0c, 0x08, 0x06, 0x03, 0x0c}, 100, 64, 28, 64, 92, 64,
 #else	/* SUPPORT_FMGEN */
 				3, {0x0c, 0x0c, 0x08, 0x06, 0x03, 0x0c}, 100, 64, 64, 64, 64, 64,
 #endif	/* SUPPORT_FMGEN */

@@ -430,6 +430,8 @@ extern BOOL QueryPerformanceCounter(LARGE_INTEGER* count);
 extern BOOL QueryPerformanceFrequency(LARGE_INTEGER* freq);
 #endif
 
+#define setScreenUpdateFlag()		pcstat.screenupdate |= 4
+
 #ifdef __cplusplus
 }
 #endif

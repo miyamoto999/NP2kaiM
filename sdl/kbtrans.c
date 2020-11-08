@@ -9,6 +9,7 @@
 #include <embed/vramhdl.h>
 #include <embed/menubase/menubase.h>
 #include "sysmenu.h"
+#include "pccore.h"
 
 static bool key_states[0x100];
 
@@ -1364,18 +1365,22 @@ void sdlkbd_keyup(UINT key) {
 }
 
 /* メニュー表示時にファンクションキーの変換テーブル */
-static UINT8 menuFnCnv[] = {
-  0x60,     /* F1(STOP) */
-  0x61,     /* F2(COPY) */
-  0x72,     /* F3(KANA) */
-  0x38,     /* F4(INS) */
-  0x39,     /* F5(DEL) */
+static struct _menu_fn_cnv
+{
+  UINT8 code;
+  BOOL redraw;
+} menuFnCnv[] = {
+  {0x60, FALSE},     /* F1(STOP) */
+  {0x61, FALSE},     /* F2(COPY) */
+  {0x72, TRUE},     /* F3(KANA) */
+  {0x38, FALSE},     /* F4(INS) */
+  {0x39, FALSE},     /* F5(DEL) */
 
-  0x3e,     /* F6(HOME/CLR) */
-  0x3f,     /* F7(HELP) */
-  NC,       /* F8 */
-  NC,       /* F9 */
-  NC,       /* F10 */
+  {0x3e, FALSE},     /* F6(HOME/CLR) */
+  {0x3f, FALSE},     /* F7(HELP) */
+  {NC, FALSE},       /* F8 */
+  {NC, FALSE},       /* F9 */
+  {NC, TRUE},       /* F10(TENKEY) */
 };
 
 void sdlkbd_keydownMenuFn(UINT key) {
@@ -1383,15 +1388,15 @@ void sdlkbd_keydownMenuFn(UINT key) {
   if(key < SDLK_F1 || key > SDLK_F10) {
     return;
   }
-  UINT8 data = menuFnCnv[key - SDLK_F1];
+  struct _menu_fn_cnv *data = &menuFnCnv[key - SDLK_F1];
 #else
   if(key < SDL_SCANCODE_F1 || key > SDL_SCANCODE_F10) {
     return;
   }
-  UINT8 data = menuFnCnv[key - SDL_SCANCODE_F1];
+  struct _menu_fn_cnv *data = &menuFnCnv[key - SDL_SCANCODE_F1];
 #endif
-  if(data != NC && !key_states[key]) {
-     keystat_senddata(data);
+  if(data->code != NC && !key_states[key]) {
+     keystat_senddata(data->code);
      key_states[key] = 1;
   }  
 }
@@ -1401,15 +1406,18 @@ void sdlkbd_keyupMenuFn(UINT key) {
   if(key < SDLK_F1 || key > SDLK_F10) {
     return;
   }
-  UINT8 data = menuFnCnv[key - SDLK_F1];
+  struct _menu_fn_cnv *data = &menuFnCnv[key - SDLK_F1];
 #else
   if(key < SDL_SCANCODE_F1 || key > SDL_SCANCODE_F10) {
     return;
   }
-  UINT8 data = menuFnCnv[key - SDL_SCANCODE_F1];
+  struct _menu_fn_cnv *data = &menuFnCnv[key - SDL_SCANCODE_F1];
 #endif
-  if(data != NC && key_states[key]) {
-     keystat_senddata(data | 0x80);
+  if(data->redraw) {
+    setScreenUpdateFlag();
+  }
+  if(data->code != NC && key_states[key]) {
+     keystat_senddata(data->code | 0x80);
      key_states[key] = 0;
   }  
 }

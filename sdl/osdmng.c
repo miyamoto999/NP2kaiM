@@ -12,6 +12,7 @@
 #include "embed/vramhdl.h"
 #include "osdmng.h"
 #include <font/font.h>
+#include "keystat.h"
 #include "kbdmng.h"
 #include "pccore.h"
 
@@ -159,7 +160,7 @@ void osd_setEnable(BOOL val)
     if(!s_odscrn) {
         return;
     }
-	pcstat.screenupdate |= 4;
+	setScreenUpdateFlag();
 }
 
 /* ファンクションキーの割り当て情報をosd描画する */
@@ -172,7 +173,13 @@ static void osd_drawFuncKey(const VRAMHDL vram, const OEMCHAR *funckey[]) {
 	osd_drawAnkText(vram, x, y, "    ", black, black);
 	x = 4 * 8;
 	for(int i = 0; i < 5; i++) {
-		osd_drawAnkText(vram, x, y, funckey[i], black, light_blue);
+		if(i == 2 && keystat_kanaled())  {	
+					// かなロック中の場合、F3の
+					// ファンクションキー表示の背景色を黄色にする
+			osd_drawAnkText(vram, x, y, funckey[i], black, yellow);
+		} else {
+			osd_drawAnkText(vram, x, y, funckey[i], black, light_blue);
+		}
 		x += strlen(funckey[i]) * 8;
 		osd_drawAnkText(vram, x, y, " ", black, black);
 		x += 8;
@@ -180,7 +187,9 @@ static void osd_drawFuncKey(const VRAMHDL vram, const OEMCHAR *funckey[]) {
 	osd_drawAnkText(vram, x, y, "   ", black, black);
 	x += 8 * 3;
 	for(int i = 5; i < 10; i++) {
-		if(i == 9 && g_tenkey) {
+		if(i == 9 && g_tenkey)  {	
+					// テンキーモード中の場合、F10の
+					// ファンクションキー表示の背景色を黄色にする
 			osd_drawAnkText(vram, x, y, funckey[i], black, yellow);
 		} else {
 			osd_drawAnkText(vram, x, y, funckey[i], black, light_blue);

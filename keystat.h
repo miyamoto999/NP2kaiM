@@ -220,6 +220,9 @@ void keyrepeat_proc();
 void keystat_senddata(REG8 data);
 void keystat_forcerelease(REG8 data);
 
+#define	keystat_kanaled()		(keyctrl.kanaref != NKEYREF_NC)
+#define	keystat_capsled()		(keyctrl.capsref != NKEYREF_NC)
+
 #ifdef __cplusplus
 }
 #endif

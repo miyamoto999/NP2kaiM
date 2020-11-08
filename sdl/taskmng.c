@@ -256,13 +256,12 @@ void taskmng_rol(void) {
 #endif
 					g_tenkey = !g_tenkey;
 					menubase_close();
-				} else {
-#if SDL_MAJOR_VERSION == 1
-					sdlkbd_keydownMenuFn(e.key.keysym.sym);
-#else
-					sdlkbd_keydownMenuFn(e.key.keysym.scancode);
-#endif
 				}
+#if SDL_MAJOR_VERSION == 1
+				sdlkbd_keydownMenuFn(e.key.keysym.sym);
+#else
+				sdlkbd_keydownMenuFn(e.key.keysym.scancode);
+#endif
 			} 
 			else {
 #if SDL_MAJOR_VERSION == 1

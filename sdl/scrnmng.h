@@ -93,12 +93,5 @@ BOOL scrnmng_fullscreen(BOOL val);
 SDL_Window *scrnmng_getWindow(void);
 #endif
 
-void vram_drawAnkChar(const VRAMHDL vram, const int posx, const int posy,
-			const OEMCHAR code, const UINT32 forecolor, const UINT32 backcolor);
-void vram_drawAnkText(const VRAMHDL vram, const int posx, const int posy,
-			const OEMCHAR *text, const UINT32 forecolor, const UINT32 backcolor);
-void vram_drawFuncKey(const VRAMHDL vram, const OEMCHAR *funckey[]);
-void menuvram_drawFuncKey();
-
 #endif	/* NP2_SDL_SCRNMNG_H */
 

@@ -1,13 +1,12 @@
 #include	<compiler.h>
-#include	<cpucore.h>
 #include	"mousemng.h"
 #include	"scrnmng.h"
 #include	<embed/menubase/menubase.h>
 #include	"commng.h"
 #include	<pccore.h>
 #include	"np2.h"
-#include	<font/font.h>
 #include	"kbdmng.h"
+#include	"osdmng.h"
 
 #if defined(SUPPORT_WAB)
 #include <wab/wab.h>
@@ -166,6 +165,7 @@ BRESULT scrnmng_create(UINT8 mode) {
 		break;
 	}
 #endif
+	osd_carete(scrnmng.width, scrnmng.height, scrnmng.bpp);
 #endif	/* __LIBRETRO__ */
 
 	scrnsurf.width = scrnmng.width;
@@ -197,6 +197,7 @@ void scrnmng_destroy(void) {
 	SDL_DestroyRenderer(s_renderer);
 	SDL_DestroyWindow(s_window);
 #endif
+	osd_destroy();
 #endif	/* __LIBRETRO__ */
 }
 
@@ -271,6 +272,7 @@ void scrnmng_setwidth(int posx, int width) {
 		break;
 	}
 #endif
+	osd_carete(scrnmng.width, scrnmng.height, scrnmng.bpp);
 #endif	/* __LIBRETRO__ */
 
 	scrnmng.width = width;
@@ -337,6 +339,7 @@ void scrnmng_setheight(int posy, int height) {
 	}
 	scrnmng.height = height;
 #endif
+	osd_carete(scrnmng.width, scrnmng.height, scrnmng.bpp);
 #endif	/* __LIBRETRO__ */
 
 	scrnmng.height = height;
@@ -414,6 +417,7 @@ void scrnmng_surfunlock(const SCRNSURF *surf) {
 		SDL_LockSurface(scrnmng.dispsurf);
 		memcpy(scrnmng.dispsurf->pixels, scrnmng.pc98surf->pixels, scrnmng.width * scrnmng.height * scrnmng.bpp / 8);
 		SDL_UnlockSurface(scrnmng.dispsurf);
+		osd_update(scrnmng.dispsurf, scrnmng.bpp);
 #endif	/* __LIBRETRO__ */
 		if(menuvram) {
 			RECT_T rect = {0, 0, scrnmng.width, scrnmng.height};
@@ -434,6 +438,7 @@ BRESULT scrnmng_entermenu(SCRNMENU *smenu) {
 	smenu->bpp = scrnmng.bpp;
 #if !defined(__LIBRETRO__)
 	mousemng_showcursor();
+	osd_setEnable(TRUE);
 #endif	/* __LIBRETRO__ */
 	return(SUCCESS);
 }
@@ -445,6 +450,7 @@ void scrnmng_leavemenu(void) {
 		mousemng_hidecursor();
 #else
 	mousemng_hidecursor();
+	osd_setEnable(FALSE);
 #endif
 #endif	/* __LIBRETRO__ */
 }
@@ -629,128 +635,6 @@ BOOL scrnmng_fullscreen(BOOL val) {
 BOOL scrnmng_toggleFullscreen() {
 	return scrnmng_fullscreen(!g_fullscreen);
 }
-
-#if !defined(__LIBRETRO__)
-static const OEMCHAR *funckey[10] = {
-	OEMTEXT(" STOP "),
-	OEMTEXT(" COPY "),
-	OEMTEXT(" KANA "),
-	OEMTEXT(" INS  "),
-	OEMTEXT(" DEL  "),
-	
-	OEMTEXT(" H/C  "),
-	OEMTEXT(" HELP "),
-	OEMTEXT("      "),
-	OEMTEXT("      "),
-	OEMTEXT("TENKEY"),
-};
-
-void menuvram_drawFuncKey() {
-	vram_drawFuncKey(menuvram, funckey);
-}
-
-void vram_drawFuncKey(const VRAMHDL vram, const OEMCHAR *funckey[]) {
-	int x = 0;
-	int y = vram->height - 16;
-	const UINT32 black = RGB32D(0, 0, 0);
-	const UINT32 light_blue = RGB32D(24, 235, 249);
-	const UINT32 yellow = RGB32D(255, 235, 0);
-	vram_drawAnkText(vram, x, y, "    ", black, black);
-	x = 4 * 8;
-	for(int i = 0; i < 5; i++) {
-		vram_drawAnkText(vram, x, y, funckey[i], black, light_blue);
-		x += strlen(funckey[i]) * 8;
-		vram_drawAnkText(vram, x, y, " ", black, black);
-		x += 8;
-	}
-	vram_drawAnkText(vram, x, y, "   ", black, black);
-	x += 8 * 3;
-	for(int i = 5; i < 10; i++) {
-		if(i == 9 && g_tenkey) {
-			vram_drawAnkText(vram, x, y, funckey[i], black, yellow);
-		} else {
-			vram_drawAnkText(vram, x, y, funckey[i], black, light_blue);
-		}
-		x += strlen(funckey[i]) * 8;
-		vram_drawAnkText(vram, x, y, " ", black, black);
-		x += 8;
-	}
-	vram_drawAnkText(vram, x, y, "   ", black, black);
-}
-
-void vram_drawAnkText(const VRAMHDL vram, const int posx, const int posy,
-			const OEMCHAR *text, const UINT32 forecolor, const UINT32 backcolor) {
-	for(int i = 0; i < strlen(text); i++) {
-		vram_drawAnkChar(vram, posx + i * 8, posy, text[i], forecolor, backcolor);
-	}
-}
-
-void vram_drawAnkChar(const VRAMHDL vram, const int posx, const int posy,
-			const OEMCHAR code, const UINT32 forecolor, const UINT32 backcolor) {
-#ifdef SUPPORT_16BPP
-	UINT16 forecolor16 = MAKE16PAL(forecolor);
-	UINT16 backcolor16 = MAKE16PAL(backcolor);
-#endif
-#if defined(SUPPORT_24BPP) || defined(SUPPORT_32BPP)
-	UINT8 forecolor24[] = {
-		(UINT8)(forecolor),
-		(UINT8)(forecolor >> 8),
-		(UINT8)(forecolor >> 16),
-	};
-	UINT8 backcolor24[] = {
-		(UINT8)(backcolor),
-		(UINT8)(backcolor >> 8),
-		(UINT8)(backcolor >> 16),
-	};
-#endif
-	UINT8 *p = &fontrom[0x80000 + (code << 4)];
-
-	for(int y = 0; y < 16; y++) {
-		UINT8 pt = *p;
-		for(int x = 0; x < 8; x++) {
-			int xx = posx + x;
-			int yy = posy + y;
-			if(xx < vram->posx || yy < vram->posy
-					|| xx >= vram->width || yy >= vram->height) {
-				continue;
-			}
-			UINT8 *p = vram->ptr + (xx - vram->posx) * vram->xalign 
-						+ (yy - vram->posy) * menuvram->yalign;
-			UINT8 *a = vram->alpha + xx - vram->posx
-						+ (yy - vram->posy) * vram->width;
-			switch (vram->bpp)
-			{
-#ifdef SUPPORT_16BPP
-			case 16:
-				if(pt & 0x80) {
-					*(UINT16*)p = forecolor16;
-				} else {
-					*(UINT16*)p = backcolor16;
-				}
-				break;
-#endif
-#if defined(SUPPORT_24BPP) || defined(SUPPORT_32BPP)
-			case 24:
-			case 32:
-				if(pt & 0x80) {
-					p[0] = forecolor24[0];
-					p[1] = forecolor24[1];
-					p[2] = forecolor24[2];
-				} else {
-					p[0] = backcolor24[0];
-					p[1] = backcolor24[1];
-					p[2] = backcolor24[2];
-				}
-				break;
-#endif
-			}
-			*a = 0x2;
-			pt <<= 1;
-		}
-		p++;
-	}
-}
-#endif
 
 #if !defined(__LIBRETRO__) && defined(__MACOSX__) && SDL_MAJOR_VERSION == 2
 SDL_Window *scrnmng_getWindow(void) {

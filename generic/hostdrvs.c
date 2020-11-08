@@ -12,6 +12,7 @@
 #include "oemtext.h"
 #endif
 #include <pccore.h>
+#include <ctype.h>
 #include "ini.h"
 
 //#include <shlwapi.h>

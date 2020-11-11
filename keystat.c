@@ -6,6 +6,9 @@
 #include	<keystat.h>
 #include	"keystat.tbl"
 #include	<generic/softkbd.h>
+#if !defined(__LIBRETRO__) && defined(__MACOSX__) && SDL_MAJOR_VERSION == 2
+#include "macOS/touchbar.h"
+#endif
 
 
 // Keyrepeat
@@ -42,6 +45,10 @@ void keystat_initialize(void) {
 	keystat_tblreset();
 	getbiospath(path, OEMTEXT("key.txt"), NELEMENTS(path));
 	keystat_tblload(path);
+
+#if !defined(__LIBRETRO__) && defined(__MACOSX__) && SDL_MAJOR_VERSION == 2
+	touchbar_kana_led(keystat_kanaled());
+#endif
 }
 
 void keystat_tblreset(void) {
@@ -187,6 +194,9 @@ static void reloadled(void) {
 #if defined(SUPPORT_SOFTKBD)
 	softkbd_led(getledstat());
 #endif
+#if !defined(__LIBRETRO__) && defined(__MACOSX__) && SDL_MAJOR_VERSION == 2
+	touchbar_kana_led(keystat_kanaled());
+#endif
 }
 
 void keystat_ctrlreset(void) {
@@ -196,6 +206,9 @@ void keystat_ctrlreset(void) {
 	keystat.ref[0x71] = keyctrl.capsref;
 #if defined(SUPPORT_SOFTKBD)
 	softkbd_led(getledstat());
+#endif
+#if !defined(__LIBRETRO__) && defined(__MACOSX__) && SDL_MAJOR_VERSION == 2
+	touchbar_kana_led(keystat_kanaled());
 #endif
 }
 

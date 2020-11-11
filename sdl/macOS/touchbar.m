@@ -4,6 +4,9 @@
 #import <stdio.h>
 #import "touchbar.h"
 #import "AppDelegate.h"
+#import "np2png.h"
+
+NSButton *kana_button;
 
 @interface TouchBarProvider: NSResponder <NSTouchBarDelegate, NSWindowDelegate> {
 @private
@@ -61,21 +64,44 @@
 
 - (NSTouchBarItem *)touchBar:(NSTouchBar *)touchBar makeItemForIdentifier:(NSTouchBarItemIdentifier)identifier
 {
+    NSData *imgData;
+    NSImage *img;
+    NSButton *button;
+
     if(!self->touchbar_table) {
         return nil;
     }
     for(int i = 0; self->touchbar_table[i].id; i++) {
         const char *cid = self->touchbar_table[i].id;
+        const int type = self->touchbar_table[i].type;
         NSString *id = [[NSString alloc] initWithUTF8String:cid];
         if([identifier isEqualToString:id]) {
             const char *caption = self->touchbar_table[i].caption;
             NSString *title = [[NSString alloc] initWithUTF8String:caption];
-            NSCustomTouchBarItem *item = [[NSCustomTouchBarItem alloc] initWithIdentifier:identifier];
-            NSButton *button = [NSButton buttonWithTitle:title target:self
+            NSCustomTouchBarItem *item = [[NSCustomTouchBarItem alloc] 
+                            initWithIdentifier:identifier];
+            switch(type) {
+                case NP2_TB_TYPE_IMAGE:
+                    imgData = [NSData dataWithBytes:g_np2png length:g_np2png_len];
+                    img = [[NSImage alloc] initWithData:imgData];
+                    button = [NSButton buttonWithImage:img target:self 
                                             action:@selector(buttonClicked:)];
-            item.view =  button;
+                    break;
+                case NP2_TB_TYPE_BUTTON:
+                case NP2_TB_TYPE_KANA_BUTTON:
+                    button = [NSButton buttonWithTitle:title target:self
+                                            action:@selector(buttonClicked:)];
+                    if(type == NP2_TB_TYPE_KANA_BUTTON) {
+                        kana_button = button;
+                    }
+                    break;
+            }
+            button.tag = i;
+            item.view = button;
             [self.touchBarButtons addObject:button];
             [self.touchBarItems addObject:item];
+            button.bezelColor = NSColor.clearColor;
+
             return item;
         }
     }
@@ -100,13 +126,8 @@
 
 - (void)buttonClicked:(NSButton*)sender
 {
-    const char *title = [[sender title] UTF8String];
-    for(int i = 0; self->touchbar_table[i].id; i++) {
-        if(strcmp(title, self->touchbar_table[i].caption) == 0) {
-            self->touchbar_table[i].action();
-            return;
-        }
-    }
+    int idx = sender.tag;
+    self->touchbar_table[idx].action(sender);
 }
 
 @end
@@ -118,4 +139,21 @@ void touchbar_init(void *winid, TOUCHBAR_ITEM *tbtable) {
 
     TouchBarProvider *touchBarProvider = [[TouchBarProvider alloc] initWithTable:tbtable];
     [touchBarProvider installAsDelegateForWindow:winid];
+}
+
+void touchbar_button_onoff(void *button, char val)
+{
+    if(!button) {
+        return;
+    }
+    NSButton *btn = (NSButton*)button;
+    if(val) {
+        btn.bezelColor = NSColor.systemYellowColor;
+    } else {
+        btn.bezelColor = NSColor.clearColor;
+    }
+}
+
+void touchbar_kana_led(char val) {
+    touchbar_button_onoff(kana_button, val);
 }

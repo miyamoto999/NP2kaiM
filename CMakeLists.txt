@@ -646,6 +646,7 @@ if(NOT CMAKE_CROSSCOMPILING)
 			list(APPEND NP2kai_SDL_UNIX_sources "sdl/macOS/AppDelegate.m")
 			list(APPEND NP2kai_SDL_UNIX_sources "sdl/macOS/tbtable.c")
 			list(APPEND NP2kai_SDL_UNIX_sources "sdl/macOS/touchbar.m")
+			list(APPEND NP2kai_SDL_UNIX_sources "sdl/macOS/np2png.c")
 			list(APPEND NP2kai_SDL_UNIX_include_dirs "sdl/macOS")
 			set(CMAKE_EXE_LINKER_FLAGS "-framework AppKit")
 

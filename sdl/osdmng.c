@@ -111,7 +111,7 @@ void osd_update(SDL_Surface *disp, int bpp)
                 x = 0;
                 do {
                     if(a[x]) {
-						*(UINT32*)r = *(UINT32*)(q + (x * 2));
+						*(UINT16*)r = *(UINT16*)(q + (x * 2));
                     }
                     r += s_odscrn->xalign;
                 } while(++x < s_odscrn->width);

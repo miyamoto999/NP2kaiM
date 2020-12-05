@@ -899,6 +899,11 @@ static const INITBL iniitem[] = {
 	{OEMTEXT("keyrepeat_enable"), INITYPE_BOOL,	&np2cfg.keyrepeat_enable,	0},
 	{OEMTEXT("keyrepeat_delay"), INITYPE_UINT16,	&np2cfg.keyrepeat_delay,	500},
 	{OEMTEXT("keyrepeat_interval"), INITYPE_UINT16,	&np2cfg.keyrepeat_interval,	50},
+
+#if defined(NP2_SDL) && (SDL_MAJOR_VERSION != 1)
+	// Reduce CPU usage FLAG
+	{OEMTEXT("reduce_cpuusage"), INITYPE_BOOL, &np2cfg.reduce_cpuusage, 1},
+#endif
 };
 
 #define	INIITEMS	(sizeof(iniitem) / sizeof(INITBL))

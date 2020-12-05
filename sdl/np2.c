@@ -828,7 +828,7 @@ static void np2exec()
 		g_u8ControlState = 0;
 #endif
 
-		taskmng_rol();
+		taskmng_rol(0);
 #if defined(EMSCRIPTEN) && !defined(__LIBRETRO__)
 //		emscripten_sleep_with_yield(0);
 		emscripten_sleep(0);

@@ -333,6 +333,11 @@ struct tagNP2Config
 
 	// hostdrive:flag to create file with lowercase file name. 
 	UINT8 hdrv_flower;
+
+#if defined(NP2_SDL) && (SDL_MAJOR_VERSION != 1)
+	// Requce CPU usage FLAG
+	UINT8 reduce_cpuusage;
+#endif
 };
 typedef struct tagNP2Config  NP2CFG;		/*!< The define of config */
 

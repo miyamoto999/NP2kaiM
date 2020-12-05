@@ -219,7 +219,12 @@ const OEMCHAR np2version[] = OEMTEXT(NP2KAI_GIT_TAG " " NP2KAI_GIT_HASH);
 				// Setting keyrepeat
 				0, 500, 50,
 				// hostdrive:flag to create file with lowercase file name.
-				0
+				0,
+#if defined(NP2_SDL) && (SDL_MAJOR_VERSION != 1)
+
+				// Reduce CPU usage FLAG
+				1
+#endif
 	};
 
 	PCCORE	pccore = {	PCBASECLOCK25, PCBASEMULTIPLE,

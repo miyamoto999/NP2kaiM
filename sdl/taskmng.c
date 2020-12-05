@@ -13,6 +13,7 @@
 #include	"np2.h"
 #include	<np2_thread.h>
 #include	"kbdmng.h"
+#include	"pccore.h"
 
 #if defined(__LIBRETRO__)
 #include <retro_miscellaneous.h>
@@ -109,15 +110,30 @@ int convertKeyMap(int scancode){
 
 int mx = 320, my = 240;
 
-void taskmng_rol(void) {
+void taskmng_rol(int ms) {
 
 #if !defined(__LIBRETRO__)
 	SDL_Event	e;
 
-
-	if ((!task_avail) || (!SDL_PollEvent(&e))) {
+	if(!task_avail) {
 		return;
 	}
+
+#if SDL_MAJOR_VERSION == 1
+	if (!SDL_PollEvent(&e)) {
+		return;
+	}
+#else
+	if(ms == 0 || !np2cfg.reduce_cpuusage) {
+		if (!SDL_PollEvent(&e)) {
+			return;
+		}
+	} else {
+		if (!SDL_WaitEventTimeout(&e, ms)) {
+			return;
+		}
+	}
+#endif
 	switch(e.type) {
 		case SDL_MOUSEMOTION:
 			if (menuvram == NULL) {
@@ -312,12 +328,15 @@ BOOL taskmng_sleep(UINT32 tick) {
 
 	base = GETTICK();
 	while((task_avail) && ((GETTICK() - base) < tick)) {
-		taskmng_rol();
 #if defined(EMSCRIPTEN) && !defined(__LIBRETRO__)
+		taskmng_rol(0);
 //		emscripten_sleep_with_yield(1);
 		emscripten_sleep(1);
 #else
+		taskmng_rol(tick);
+#if SDL_MAJOR_VERSION == 1
 		NP2_Sleep_ms(1);
+#endif
 #endif
 	}
 	return(task_avail);

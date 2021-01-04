@@ -16,6 +16,7 @@ CONTENTS_DIR = os.path.join(sys.argv[1], APP_DIR, "Contents")
 EXEC_DIR = os.path.join(CONTENTS_DIR, "MacOS")
 RESOURCES_DIR = os.path.join(CONTENTS_DIR, "Resources")
 CMD_PATH = os.path.join(sys.argv[1], "sdlnp21kai")
+FRAMEWORKS_DIR = os.path.join(CONTENTS_DIR, "Frameworks")
 
 print(CMD_PATH)
 if not os.path.isfile(CMD_PATH):
@@ -47,8 +48,8 @@ def changelib(file):
     for f in libs:
         print("## " + f)
         subprocess.call(["install_name_tool", \
-            "-change", f, os.path.join("@executable_path", os.path.basename(f)), \
-                os.path.join(EXEC_DIR, os.path.basename(file))])
+            "-change", f, os.path.join("@rpath", os.path.basename(f)), \
+                file])
 
 # ライブラリのリストアップ
 dlllistup(CMD_PATH)
@@ -59,6 +60,7 @@ libs = list(set(libs))
 # appのディレクトリを作成
 os.makedirs(EXEC_DIR, exist_ok=True)
 os.makedirs(RESOURCES_DIR, exist_ok=True)
+os.makedirs(FRAMEWORKS_DIR, exist_ok=True)
 
 # sdlnp21kaiをコピー
 shutil.copyfile(CMD_PATH, os.path.join(EXEC_DIR, os.path.basename(CMD_PATH)))
@@ -66,15 +68,20 @@ os.chmod(os.path.join(EXEC_DIR, os.path.basename(CMD_PATH)), 0o755)
 
 # DLLをコピー
 for f in libs:
-    shutil.copyfile(f, os.path.join(EXEC_DIR, os.path.basename(f)))
+    shutil.copyfile(f, os.path.join(FRAMEWORKS_DIR, os.path.basename(f)))
+
+# 実行ファイルにrpathを追加
+subprocess.call(["install_name_tool", \
+    "-add_rpath", "@executable_path/../Frameworks", os.path.join(EXEC_DIR, os.path.basename(CMD_PATH))])
 
 # 実行ファイルやDLLに書き込まれているDLLパスを変更する。
 changelib(os.path.join(EXEC_DIR, os.path.basename(CMD_PATH)))
+
 for f in libs:
-    changelib(f)
+    changelib(os.path.join(FRAMEWORKS_DIR, os.path.basename(f)))
 
 # Info.plistなどの必要なファイルをコピーする。
 shutil.copyfile("Info.plist", os.path.join(CONTENTS_DIR, "Info.plist"))
 shutil.copyfile("app.icns", os.path.join(RESOURCES_DIR, "app.icns"))
-shutil.copyfile("run.sh", os.path.join(EXEC_DIR, "run.sh"))
-os.chmod(os.path.join(EXEC_DIR, "run.sh"), 0o755)
+# shutil.copyfile("run.sh", os.path.join(EXEC_DIR, "run.sh"))
+# os.chmod(os.path.join(EXEC_DIR, "run.sh"), 0o755)

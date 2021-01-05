@@ -654,7 +654,7 @@ int np2_main(int argc, char *argv[]) {
 	pc98_cirrus_vga_init();
 #endif
 #if !defined(__LIBRETRO__)
-	mousemng_hidecursor();
+	// mousemng_hidecursor();
 #endif	/* __LIBRETRO__ */
 	scrndraw_redraw();
 	pccore_reset();

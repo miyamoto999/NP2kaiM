@@ -89,7 +89,7 @@ void scrnmng_bltwab(void);
 
 BOOL scrnmng_toggleFullscreen();
 BOOL scrnmng_fullscreen(BOOL val);
-#if !defined(__LIBRETRO__) && defined(__MACOSX__) && SDL_MAJOR_VERSION == 2
+#if !defined(__LIBRETRO__) && SDL_MAJOR_VERSION == 2
 SDL_Window *scrnmng_getWindow(void);
 #endif
 

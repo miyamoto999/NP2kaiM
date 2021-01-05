@@ -15,6 +15,8 @@
 #include	"kbdmng.h"
 #include	"pccore.h"
 
+int g_enable_mouse_cursor = 1;
+
 #if defined(__LIBRETRO__)
 #include <retro_miscellaneous.h>
 #include <libretro.h>
@@ -206,6 +208,10 @@ void taskmng_rol(int ms) {
 
 				case SDL_BUTTON_MIDDLE:
 					if (menuvram == NULL) {
+						if(!g_enable_mouse_cursor) {
+							mousemng_showcursor();
+							g_enable_mouse_cursor = !g_enable_mouse_cursor;
+						}
 //						sysmenu_menuopen(0, e.button.x, e.button.y);
 						sysmenu_menuopen(0, mx, my);
 					} else {
@@ -216,7 +222,6 @@ void taskmng_rol(int ms) {
 			break;
 
 		case SDL_KEYDOWN:
-
 #if defined(__OPENDINGUX__)
 #if SDL_MAJOR_VERSION != 1
       e.key.keysym.scancode=convertKeyMap(e.key.keysym.scancode);
@@ -233,7 +238,8 @@ void taskmng_rol(int ms) {
 #if SDL_MAJOR_VERSION == 1
 			if (e.key.keysym.sym == SDLK_F11) {
 #else
-			if((e.key.keysym.mod & KMOD_SHIFT) && e.key.keysym.scancode == SDL_SCANCODE_F11) {
+			if((e.key.keysym.mod & KMOD_SHIFT)
+					&& e.key.keysym.scancode == SDL_SCANCODE_F11) {
 				scrnmng_toggleFullscreen();
 			} else
 			if (e.key.keysym.scancode == SDL_SCANCODE_F11) {
@@ -242,11 +248,29 @@ void taskmng_rol(int ms) {
 			if ((e.key.keysym.mod == KMOD_LCTRL) || (e.key.keysym.mod == KMOD_RCTRL)) {
 #endif 
 				if (menuvram == NULL) {
+					if(!g_enable_mouse_cursor) {
+						mousemng_showcursor();
+						g_enable_mouse_cursor = !g_enable_mouse_cursor;
+					}
 					sysmenu_menuopen(0, 0, 0);
 				}
 				else {
 					menubase_close();
 				}
+			}
+#if SDL_MAJOR_VERSION == 1
+			else if((e.key.keysym.mod & KMOD_SHIFT)
+						&& e.key.keysym.sym == SDLK_F12) {
+#else
+			else if((e.key.keysym.mod & KMOD_SHIFT)
+						&& e.key.keysym.scancode == SDL_SCANCODE_F12) {
+#endif
+				if(g_enable_mouse_cursor) {
+					mousemng_hidecursor();
+				} else {
+					mousemng_showcursor();
+				}
+				g_enable_mouse_cursor = !g_enable_mouse_cursor;
 			}
 #if defined(EMSCRIPTEN) && !defined(__LIBRETRO__)
 			}

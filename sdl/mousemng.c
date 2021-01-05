@@ -1,5 +1,6 @@
 #include	"compiler.h"
 #include	"mousemng.h"
+#include	"scrnmng.h"
 
 MOUSEMNG	mousemng;
 #if defined(EMSCRIPTEN) && !defined(__LIBRETRO__)
@@ -166,6 +167,7 @@ void mousemng_hidecursor() {
 #if SDL_MAJOR_VERSION == 1
 		SDL_WM_GrabInput(SDL_GRAB_ON);
 #else
+		SDL_WarpMouseInWindow(scrnmng_getWindow(), 10, 10);
 		SDL_SetRelativeMouseMode(SDL_TRUE);
 #endif
 	}

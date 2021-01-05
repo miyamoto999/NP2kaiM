@@ -437,7 +437,7 @@ BRESULT scrnmng_entermenu(SCRNMENU *smenu) {
 	smenu->height = scrnmng.height;
 	smenu->bpp = scrnmng.bpp;
 #if !defined(__LIBRETRO__)
-	mousemng_showcursor();
+	// mousemng_showcursor();
 	osd_setEnable(TRUE);
 #endif	/* __LIBRETRO__ */
 	return(SUCCESS);
@@ -449,7 +449,7 @@ void scrnmng_leavemenu(void) {
 	if(ismouse_captured())
 		mousemng_hidecursor();
 #else
-	mousemng_hidecursor();
+	// mousemng_hidecursor();
 	osd_setEnable(FALSE);
 #endif
 #endif	/* __LIBRETRO__ */
@@ -636,7 +636,7 @@ BOOL scrnmng_toggleFullscreen() {
 	return scrnmng_fullscreen(!g_fullscreen);
 }
 
-#if !defined(__LIBRETRO__) && defined(__MACOSX__) && SDL_MAJOR_VERSION == 2
+#if !defined(__LIBRETRO__) && SDL_MAJOR_VERSION == 2
 SDL_Window *scrnmng_getWindow(void) {
 	return s_window;
 }

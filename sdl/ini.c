@@ -14,7 +14,7 @@
 #include <joymng.h>
 #include "kbdmng.h"
 #include <soundmng.h>
-
+#include "toolbox/inifile.h"
 
 typedef struct {
 	const OEMCHAR	*title;
@@ -362,6 +362,7 @@ void
 ini_read(const OEMCHAR *path, const OEMCHAR *title, const INITBL *tbl, UINT count)
 {
 	_INIARG	iniarg;
+	char data[256];
 
 	if (path == NULL) {
 		return;
@@ -369,7 +370,13 @@ ini_read(const OEMCHAR *path, const OEMCHAR *title, const INITBL *tbl, UINT coun
 	iniarg.title = title;
 	iniarg.tbl = (INITBL *)tbl;
 	iniarg.tblterm = (INITBL *)(tbl + count);
-	profile_enum(path, &iniarg, inireadcb);
+	for(int i = 0; i < count; i++) {
+		int len = tb_iniGetPrivateProfileString(title, tbl[i].item, "", data, 256, path);
+		if(len > 0) {
+			inireadcb(&iniarg, title, tbl[i].item, data);
+		}
+	}
+	tb_iniFreeCache();
 }
 
 
@@ -457,17 +464,7 @@ ini_write(const OEMCHAR *path, const OEMCHAR *title, const INITBL *tbl, UINT cou
 	OEMCHAR	work[512];
 	INITBL	*p;
 	INITBL	*pterm;
-	FILEH	fh;
 	BRESULT	set;
-
-	fh = file_create(path);
-	if (fh == FILEH_INVALID) {
-		return;
-	}
-	milstr_ncpy(work, "[", sizeof(work));
-	milstr_ncat(work, title, sizeof(work));
-	milstr_ncat(work, "]\n", sizeof(work));
-	file_write(fh, work, (UINT)strlen(work));
 
 	p = (INITBL*)tbl;
 	pterm = (INITBL*)tbl + count;
@@ -557,15 +554,12 @@ ini_write(const OEMCHAR *path, const OEMCHAR *title, const INITBL *tbl, UINT cou
 				break;
 			}
 			if (set == SUCCESS) {
-				file_write(fh, p->item, (UINT)OEMSTRLEN(p->item));
-				file_write(fh, " = ", 3);
-				file_write(fh, work, (UINT)OEMSTRLEN(work));
-				file_write(fh, "\n", 1);
+				tb_iniWritePrivateProfileString(title, p->item, work, path);
 			}
 		}
 		p++;
 	}
-	file_close(fh);
+	tb_iniFreeCache();
 }
 
 #if defined(CPUCORE_IA32) && !defined(__LIBRETRO__)
@@ -956,8 +950,12 @@ void initload(void) {
 
 	OEMCHAR	path[MAX_PATH];
 
-	milstr_ncpy(path, file_getcd(inifile), sizeof(path));
-	fprintf(stderr, OEMTEXT("Loading %s from %s"), inifile, path);
+	if(modulefile[0] == 0) {
+		milstr_ncpy(path, file_getcd(inifile), sizeof(path));
+	} else {
+		milstr_ncpy(path, modulefile, sizeof(path));
+	}
+	fprintf(stderr, OEMTEXT("Loading %s to %s"), inifile, path);
 //	TRACEOUT(OEMTEXT("Loading %s from %s", inifile, path));
 	ini_read(path, ini_title, iniitem, INIITEMS);
 }
@@ -966,7 +964,11 @@ void initsave(void) {
 
 	OEMCHAR	path[MAX_PATH];
 
-	milstr_ncpy(path, file_getcd(inifile), sizeof(path));
+	if(modulefile[0] == 0) {
+		milstr_ncpy(path, file_getcd(inifile), sizeof(path));
+	} else {
+		milstr_ncpy(path, modulefile, sizeof(path));
+	}
 	fprintf(stderr, OEMTEXT("Saving %s to %s"), inifile, path);
 	ini_write(path, ini_title, iniitem, INIITEMS);
 }

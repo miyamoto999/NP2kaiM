@@ -116,7 +116,7 @@ MS-DOSメインで使っていると、起動直後からマウスカーソル�
 ---
 
 # Neko Project II 0.86 kai
-Oct 22, 2020<br>
+Jan 19, 2021<br>
 
 NP2kai is PC-9801 series emulator<br>
 
@@ -1196,36 +1196,43 @@ HSV/RGB smoothing is heavy to work.<br>
 </div></details>
 
 
-#### MIDI sound (X11)
+#### MIDI sound (libretro)
+
+<details><summary>
+Common
+</summary><div>
+
+Set RetroArch's 'Setting' -&gt; 'Audio' -&gt; 'MIDI' -&gt; 'Output' -&gt; '(MIDI device)' in menu.
+</div></details>
+
+<details><summary>
+Windows
+</summary><div>
+
+NP2kai can use 'Microsoft GS Wavetable Synth'.<br>
+NP2kai can use external MIDI sound generator with UM-1(USB-MIDI interface).<br>
+</div></details>
+
+<details><summary>
+Linux
+</summary><div>
 
 <details><summary>
 External MIDI
 </summary><div>
 
-NP2kai can use external MIDI sound generator with UM-1.<br>
-
-1. Connect UM-1 to USB
-2. Check you can see 'C4D0' by '$ ls /dev/snd' command
-3. Open xnp2kai
-- Select xnp2kai's menu 'Device' -> 'MIDI option...'
-- Set '/dev/snd/C4D0' to 'MIDI-OUT' in ’Device' frame
-- Select 'MIDI-OUT device' to 'MIDI-OUT' in ’Assign' frame
-- Press 'OK'
-4. I tried with Touhou 2 (set MIDI option), I can listen MIDI sound.
+NP2kai can use external MIDI sound generator with UM-1(USB-MIDI interface).<br>
 </div></details>
 
 <details><summary>
 Timidity++ (software MIDI synthesizer)
 </summary><div>
 
-NP2kai can software synthesizer Timidity++ as Virtual MIDI.<br>
+NP2kai can software synthesizer Timidity++ as ALSA Virtual MIDI.<br>
 
-It seems that Timidity++ is incompatible with PulseAudio.<br>
-By changing to ALSA output, I was able to play sound.<br>
-
-1. Install Timidity++ and fluid-soundfont-gm
+1. Install Timidity++ and fluid-soundfont
 ```
-$ sudo apt-get install timidity fluid-soundfont-gm
+$ sudo apt install timidity timidity-interfaces-extra fluid-soundfont-gm fluid-soundfont-gs
 ```
 2. Edit timidity.cfg
 ```
@@ -1235,48 +1242,104 @@ $ sudo nano /etc/timidity/timidity.cfg
 #source /etc/timidity/freepats.cfg<br>
 source /etc/timidity/fluidr3_gm.cfg
 ```
-3. restart timidity
+3. Restart timidity
 ```
 $ sudo service timidity restart
 ```
-4. 
-```
-$ aconnect -o
-```
-This time, you can see like Timidity port 128:0 to 128:3.<br>
-5. 
+4. Run timidity daemon output to ALSA.
 ```
 $ timidity -iA -B2,8 -Os &
 ```
-Run timidity daemon output to ALSA.
+
+5. It maybe able to select 'Timidity port 0' RetroArch's MIDI device.
+
+Next boot computer, you command from 4.
+You can write to .profile, but Timidity daemon spend a bit CPU performance.
+</div></details>
+
+</div></details>
+
+#### MIDI sound (X11)
+
+<details><summary>
+Common
+</summary><div>
+
+NP2kai's MIDI setting is in 'Device' -&gt; 'MIDI option...'.
+
+Set device file to 'Device'\'s 'MIDI-OUT'. (ex. /dev/snd/midiC0D0)<br>
+And set 'Assign''s 'MIDI-OUT' to 'MIDI-OUT device'.
+</div></details>
+
+<details><summary>
+External MIDI
+</summary><div>
+
+NP2kai can use external MIDI sound generator with UM-1(USB-MIDI interface).<br>
+
+1. Connect UM-1 to USB
+2. Check you can see 'midiC4D0' by '$ ls /dev/snd' command
+3. Open xnp2kai and set MIDI device.
+
+I tried with Touhou 2 (set MIDI option), I could listen MIDI sound.
+</div></details>
+
+<details><summary>
+Timidity++ (software MIDI synthesizer)
+</summary><div>
+
+NP2kai can software synthesizer Timidity++ as Virtual MIDI.<br>
+To using, necessaly setup Virtual MIDI Port module too.
+
+1. Install Timidity++ and fluid-soundfont
+```
+$ sudo apt install timidity timidity-interfaces-extra fluid-soundfont-gm fluid-soundfont-gs
+```
+2. Edit timidity.cfg
+```
+$ sudo nano /etc/timidity/timidity.cfg
+```
+```
+#source /etc/timidity/freepats.cfg<br>
+source /etc/timidity/fluidr3_gm.cfg
+```
+3. Restart timidity
+```
+$ sudo service timidity restart
+```
+4. Run timidity daemon output to ALSA.
+```
+$ timidity -iA -B2,8 -Os &
+```
+You will see like ALSAed Timidity port 128:0 to 128:3.<br>
 ```
 $ aconnect -o
 ```
-This time, you can see like ALSAed Timidity port 129:0 to 129:3.<br>
-6. 
+5. Add virtual MIDI port module.
 ```
 $ sudo modprobe snd-virmidi
 ```
-Add virtual MIDI port module.
+(If you want to use snd-virmidi permanently, see [detail info](https://wiki.archlinux.org/index.php/Timidity%2B%2B).)
 ```
 $ aconnect -o
 ```
-This time, you can see like VirMIDI 3-0 to 3-3 at 28:0 to 31:0.<br>
-7. 
+You can see like VirMIDI 0-0 to 0-3 at 16:0 to 19:0.<br>
+6. You can also see VirMIDI 0-0 to 0-3 as midiC0D0 to midiC0D3.<br>
 ```
 $ ls /dev/snd
 ```
-You can also see VirMIDI 3-0 to 3-3 at midiC3D0 to midiC3D3.<br>
-8. Connect VirMIDI 3-0 and ALSAed Timidity port 0.
+7. Connect VirMIDI 0-0 and ALSAed Timidity port 0.
 ```
-$ aconnect 28:0 129:0
+$ aconnect 16:0 128:0
 ```
-9. Finally set '/dev/snd/midiC3D0' to xnp2kai.
+8. Finally set '/dev/snd/midiC0D0' to xnp2kai.
 
 Next boot computer, you command from 4.
 </div></details>
 
 ## Release
+- Jan 19, 2021
+  - merge NP21/W rev.79
 - Oct 22, 2020
   (Thanks to @miyamoto999)
   - Key-repeat

@@ -114,8 +114,9 @@ const OEMCHAR np2version[] = OEMTEXT(NP2KAI_GIT_TAG " " NP2KAI_GIT_HASH);
 				0, 0, {1, 1, 6, 1, 8, 1},
 				128, 0x00, 1, 
 #if defined(SUPPORT_ASYNC_CPU)
-				0, 1,
+				0, 
 #endif
+				1,
 #if defined(SUPPORT_IDEIO)
 				0xD8,
 #endif
@@ -1020,34 +1021,48 @@ static void drawscreen(void) {
 				pcstat.screenupdate |= 1;
 			}
 		}
-		else if (gdcs.textdisp & GDCSCRN_ENABLE) {
-			if (!gdcs.disp) {
-				if ((gdcs.grphdisp & GDCSCRN_MAKE) ||
-					(gdcs.textdisp & GDCSCRN_MAKE)) {
-					if (!(gdc.mode1 & 0x4)) {
-						maketextgrph(0, gdcs.textdisp & GDCSCRN_ALLDRAW,
-								gdcs.grphdisp & GDCSCRN_ALLDRAW);
+		else {
+			if (gdcs.textdisp & GDCSCRN_ENABLE) {
+				if (!gdcs.disp) {
+					if ((gdcs.grphdisp & GDCSCRN_MAKE) ||
+						(gdcs.textdisp & GDCSCRN_MAKE)) {
+						if (!(gdc.mode1 & 0x4)) {
+							maketextgrph(0, gdcs.textdisp & GDCSCRN_ALLDRAW,
+									gdcs.grphdisp & GDCSCRN_ALLDRAW);
+						}
+						else {
+							maketextgrph40(0, gdcs.textdisp & GDCSCRN_ALLDRAW,
+									gdcs.grphdisp & GDCSCRN_ALLDRAW);
+						}
+						gdcs.grphdisp &= ~GDCSCRN_MAKE;
+						pcstat.screenupdate |= 1;
 					}
-					else {
-						maketextgrph40(0, gdcs.textdisp & GDCSCRN_ALLDRAW,
-								gdcs.grphdisp & GDCSCRN_ALLDRAW);
-					}
-					gdcs.grphdisp &= ~GDCSCRN_MAKE;
-					pcstat.screenupdate |= 1;
 				}
-			}
-			else {
-				if ((gdcs.grphdisp & (GDCSCRN_MAKE << 1)) ||
-					(gdcs.textdisp & GDCSCRN_MAKE)) {
-					if (!(gdc.mode1 & 0x4)) {
-						maketextgrph(1, gdcs.textdisp & GDCSCRN_ALLDRAW,
-								gdcs.grphdisp & (GDCSCRN_ALLDRAW << 1));
+				else {
+					if ((gdcs.grphdisp & (GDCSCRN_MAKE << 1)) ||
+						(gdcs.textdisp & GDCSCRN_MAKE)) {
+						if (!(gdc.mode1 & 0x4)) {
+							maketextgrph(1, gdcs.textdisp & GDCSCRN_ALLDRAW,
+									gdcs.grphdisp & (GDCSCRN_ALLDRAW << 1));
+						}
+						else {
+							maketextgrph40(1, gdcs.textdisp & GDCSCRN_ALLDRAW,
+									gdcs.grphdisp & (GDCSCRN_ALLDRAW << 1));
+						}
+						gdcs.grphdisp &= ~(GDCSCRN_MAKE << 1);
+						pcstat.screenupdate |= 1;
 					}
-					else {
-						maketextgrph40(1, gdcs.textdisp & GDCSCRN_ALLDRAW,
-								gdcs.grphdisp & (GDCSCRN_ALLDRAW << 1));
-					}
-					gdcs.grphdisp &= ~(GDCSCRN_MAKE << 1);
+				}
+			}else{
+				// 白黒グラフィック
+				grphfn = makegrph;
+				bit = GDCSCRN_MAKE;
+				if (gdcs.disp) {
+					bit <<= 1;
+				}
+				if (gdcs.grphdisp & bit) {
+					(*grphfn)(gdcs.disp, gdcs.grphdisp & bit & GDCSCRN_ALLDRAW2);
+					gdcs.grphdisp &= ~bit;
 					pcstat.screenupdate |= 1;
 				}
 			}

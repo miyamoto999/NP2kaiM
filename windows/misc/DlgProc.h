@@ -8,6 +8,7 @@
 #include <commctrl.h>
 #include <misc/tstring.h>
 #include <misc/WndProc.h>
+#include <codecnv/codecnv.h>
 
 /**
  * @brief ダイアログ クラス
@@ -206,14 +207,16 @@ class CFileDlg
 public:
 	CFileDlg(BOOL bOpenFileDialog, LPCTSTR lpszDefExt = NULL, LPCTSTR lpszFileName = NULL, DWORD dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, LPCTSTR lpszFilter = NULL, HWND hParentWnd = NULL);
 	int DoModal();
+	virtual ~CFileDlg();
 
 	/**
 	 * ファイル名の取得
 	 * @return full path and filename
 	 */
-	LPCTSTR GetPathName() const
+	LPCTSTR GetPathName()
 	{
-		return m_ofn.lpstrFile;
+		codecnv_ucs2toutf8(m_szFileNameUtf8, _MAX_PATH, (UINT16 *)m_ofn.lpstrFile, -1);
+		return m_szFileNameUtf8;
 	}
 
 	/**
@@ -225,12 +228,20 @@ public:
 		return (m_ofn.Flags & OFN_READONLY) ? TRUE : FALSE;
 	}
 
+	void SetTitle(const char* title) {
+		codecnv_utf8toucs2((UINT16*)m_szFileTitle, 64, title, strlen(title));
+	}
+
 public:
-	OPENFILENAME m_ofn;				//!< open file parameter block
+	OPENFILENAMEW m_ofn;				//!< open file parameter block
 
 protected:
 	BOOL m_bOpenFileDialog;			//!< TRUE for file open, FALSE for file save
 	std::tstring m_strFilter;		//!< filter string
-	TCHAR m_szFileTitle[64];		//!< contains file title after return
-	TCHAR m_szFileName[_MAX_PATH];	//!< contains full path name after return
+	WCHAR m_szFileTitle[64];		//!< contains file title after return
+	WCHAR m_szFileName[_MAX_PATH];	//!< contains full path name after return
+
+	char m_szFileNameUtf8[_MAX_PATH];
+	WCHAR m_szDefExt[_MAX_PATH];
+	WCHAR* m_szFilter;
 };

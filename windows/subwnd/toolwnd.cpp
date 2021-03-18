@@ -788,7 +788,7 @@ LRESULT CToolWnd::WindowProc(UINT nMsg, WPARAM wParam, LPARAM lParam)
 						std::tstring rTitle(LoadTString(IDS_SKINTITLE));
 
 						CFileDlg dlg(TRUE, rExt.c_str(), s_toolwndcfg.skin, OFN_FILEMUSTEXIST | OFN_HIDEREADONLY, rFilter.c_str(), m_hWnd);
-						dlg.m_ofn.lpstrTitle = rTitle.c_str();
+						dlg.SetTitle(rTitle.c_str());
 						dlg.m_ofn.nFilterIndex = 1;
 						OPENFILENAMEW ofnw;
 						const BOOL r = WinFileDialogW(NULL, &ofnw, WINFILEDIALOGW_MODE_GET1, szPath, szName, rExt.c_str(), rTitle.c_str(), rFilter.c_str(), 1);

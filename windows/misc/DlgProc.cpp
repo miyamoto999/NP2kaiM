@@ -165,10 +165,12 @@ CFileDlg::CFileDlg(BOOL bOpenFileDialog, LPCTSTR lpszDefExt, LPCTSTR lpszFileNam
 	m_szFileName[0] = '\0';
 	m_szFileTitle[0] = '\0';
 
+	codecnv_utf8toucs2((UINT16 *)m_szDefExt, _MAX_PATH, lpszDefExt, -1);
+
 	m_ofn.lStructSize = sizeof(m_ofn);
 	m_ofn.lpstrFile = m_szFileName;
 	m_ofn.nMaxFile = _countof(m_szFileName);
-	m_ofn.lpstrDefExt = lpszDefExt;
+	m_ofn.lpstrDefExt = m_szDefExt;
 	m_ofn.lpstrFileTitle = m_szFileTitle;
 	m_ofn.nMaxFileTitle = _countof(m_szFileTitle);
 	m_ofn.Flags = dwFlags;
@@ -177,32 +179,31 @@ CFileDlg::CFileDlg(BOOL bOpenFileDialog, LPCTSTR lpszDefExt, LPCTSTR lpszFileNam
 	// setup initial file name
 	if (lpszFileName != NULL)
 	{
-		lstrcpyn(m_szFileName, lpszFileName, _countof(m_szFileName));
+		codecnv_utf8toucs2((UINT16*)m_szFileName, _MAX_PATH, lpszFileName, -1);
+		lstrcpyn(m_szFileNameUtf8, lpszFileName, _countof(m_szFileNameUtf8));
 	}
-
 	// Translate filter into commdlg format (lots of \0)
-	if (lpszFilter != NULL)
-	{
+	if (lpszFilter != NULL) {
 		m_strFilter = lpszFilter;
-		for (std::tstring::iterator it = m_strFilter.begin(); it != m_strFilter.end(); ++it)
-		{
-#if !defined(_UNICODE)
-			if (IsDBCSLeadByte(static_cast<BYTE>(*it)))
-			{
-				++it;
-				if (it == m_strFilter.end())
-				{
-					break;
-				}
-				continue;
-			}
-#endif	// !defined(_UNICODE)
-			if (*it == '|')
-			{
-				*it = '\0';
+		int wlen = codecnv_utf8toucs2(NULL, 0, lpszFilter, -1);
+		m_szFilter = new WCHAR[wlen];
+		codecnv_utf8toucs2((UINT16*)m_szFilter, wlen, lpszFilter, -1);
+		for (int i = 0; i < wlen; i++) {
+			if (m_szFilter[i] == L'|') {
+				m_szFilter[i] = 0;
 			}
 		}
-		m_ofn.lpstrFilter = m_strFilter.c_str();
+		m_ofn.lpstrFilter = m_szFilter;
+	}
+	else {
+		m_szFilter = NULL;
+	}
+}
+
+CFileDlg::~CFileDlg()
+{
+	if (m_szFilter) {
+		delete[]m_szFilter;
 	}
 }
 
@@ -215,11 +216,11 @@ int CFileDlg::DoModal()
 	int nResult;
 	if (m_bOpenFileDialog)
 	{
-		nResult = ::GetOpenFileName(&m_ofn);
+		nResult = ::GetOpenFileNameW(&m_ofn);
 	}
 	else
 	{
-		nResult = ::GetSaveFileName(&m_ofn);
+		nResult = ::GetSaveFileNameW(&m_ofn);
 	}
 	return nResult;
 }

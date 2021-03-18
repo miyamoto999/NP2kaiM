@@ -12,6 +12,7 @@
 #include	<dialog/np2class.h>
 #include	"menu.h"
 #endif
+#include <codecnv/codecnv.h>
 
 extern "C" REG8 cdchange_drv;
 
@@ -305,6 +306,12 @@ void sysmng_updatecaption(UINT8 flag) {
 	milstr_ncat(work, misc, NELEMENTS(work));
 	milstr_ncat(work, title, NELEMENTS(work));
 	milstr_ncat(work, clock, NELEMENTS(work));
-	SetWindowText(g_hWndMain, work);
+
+	int wlen = codecnv_utf8toucs2(NULL, 0, work, -1);
+	WCHAR* wwork = new WCHAR[wlen];
+	codecnv_utf8toucs2((UINT16*)wwork, wlen, work, -1);
+
+	SetWindowTextW(g_hWndMain, wwork);
+	delete[]wwork;
 }
 

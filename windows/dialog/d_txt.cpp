@@ -194,7 +194,7 @@ void dialog_writetxt(HWND hWnd)
 	GetDefaultFilename(rExt.c_str(), szPath, _countof(szPath));
 
 	CFileDlg dlg(FALSE, rExt.c_str(), szPath, OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY, rFilter.c_str(), hWnd);
-	dlg.m_ofn.lpstrTitle = rTitle.c_str();
+	dlg.SetTitle(rTitle.c_str());
 	dlg.m_ofn.nFilterIndex = 1;
 	OPENFILENAMEW ofnw;
 	if (WinFileDialogW(hWnd, &ofnw, WINFILEDIALOGW_MODE_SET, szPath, szName, rExt.c_str(), rTitle.c_str(), rFilter.c_str(), 1))

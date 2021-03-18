@@ -55,7 +55,7 @@ int dialog_readnpcfg(HWND hWnd)
 	file_cpyname(szPath, npcfgfilefolder, _countof(szPath));
 	
 	CFileDlg dlg(TRUE, rExt.c_str(), szPath, OFN_FILEMUSTEXIST | OFN_HIDEREADONLY, rFilter.c_str(), hWnd);
-	dlg.m_ofn.lpstrTitle = rTitle.c_str();
+	dlg.SetTitle(rTitle.c_str());
 	dlg.m_ofn.nFilterIndex = 1;
 	OPENFILENAMEW ofnw;
 	if (WinFileDialogW(hWnd, &ofnw, WINFILEDIALOGW_MODE_GET1, szPath, szName, rExt.c_str(), rTitle.c_str(), rFilter.c_str(), 1))

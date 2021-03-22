@@ -46,7 +46,7 @@
 #endif
 #include <limits.h>
 #include <string.h>
-#ifndef NP2_SDL
+#if !(defined(NP2_SDL) || defined(__LIBRETRO__))
 #include "toolbox/toolbox.h"
 #include "toolbox/memchk.h"
 #endif

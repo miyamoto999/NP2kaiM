@@ -639,7 +639,7 @@ int np2_main(int argc, char *argv[]) {
 		goto np2main_err4;
 	}
 
-#if !defined(__LIBRETRO__) && defined(__MACOSX__) && SDL_MAJOR_VERSION == 2
+#if !defined(__LIBRETRO__) && defined(__MACOSX__) && SDL_MAJOR_VERSION == 2 && !defined(NP21KAIM_CORE_DLL)
 	SDL_SysWMinfo wmInfo;
 	SDL_VERSION(&wmInfo.version);
 	SDL_GetWindowWMInfo(scrnmng_getWindow(), &wmInfo);

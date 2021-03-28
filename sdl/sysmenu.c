@@ -49,7 +49,7 @@
 static UINT bmpno = 0;
 
 /* Forward declarations */
-extern void changescreen(UINT8 newmode);
+/* extern void changescreen(UINT8 newmode); */
 
 static void sys_cmd(MENUID id) {
 

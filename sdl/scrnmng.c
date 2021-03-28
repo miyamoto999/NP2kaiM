@@ -103,7 +103,7 @@ void scrnmng_getsize(int* pw, int* ph) {
 	*ph = scrnmng.height;
 }
 
-BRESULT scrnmng_create(UINT8 mode) {
+BRESULT scrnmng_create(UINT8 mode, const void *winid) {
    if(draw32bit) {
       scrnmng.bpp = 32;
    } else {
@@ -128,10 +128,14 @@ BRESULT scrnmng_create(UINT8 mode) {
 	scrnmng.dispsurf = SDL_SetVideoMode(scrnmng.width, scrnmng.height, scrnmng.bpp, SDL_HWSURFACE);
 	scrnmng.pc98surf = SDL_CreateRGBSurface(SDL_SWSURFACE, scrnmng.width, scrnmng.height, scrnmng.bpp, 0xf800, 0x07e0, 0x001f, 0);
 #else
-	if(mode & SCRNMODE_ROTATEMASK) {
-		s_window = SDL_CreateWindow(app_name, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, scrnmng.height, scrnmng.width, 0);
+	if(winid) {
+		s_window = SDL_CreateWindowFrom(winid);
 	} else {
-		s_window = SDL_CreateWindow(app_name, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, scrnmng.width, scrnmng.height, 0);
+		if(mode & SCRNMODE_ROTATEMASK) {
+			s_window = SDL_CreateWindow(app_name, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, scrnmng.height, scrnmng.width, 0);
+		} else {
+			s_window = SDL_CreateWindow(app_name, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, scrnmng.width, scrnmng.height, 0);
+		}
 	}
 	s_renderer = SDL_CreateRenderer(s_window, -1, 0);
 #endif

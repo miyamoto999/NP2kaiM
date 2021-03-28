@@ -1,0 +1,37 @@
+#include "np2kaiapi.h"
+#include <QMessageBox>
+
+NP2kaiapi::NP2kaiapi()
+{
+    _np2api_main = NULL;
+    _np2api_end = NULL;
+    _np2api_exec = NULL;
+}
+
+bool NP2kaiapi::load()
+{
+    QLibrary dllcore("NP21kaiM_core");
+
+    if(!dllcore.load()) {
+        fprintf(stderr, "NP21kaiM_core DLL load ERROR\n");
+        return false;
+    }
+
+    _np2api_main = (NP2API_MAIN)dllcore.resolve("np2api_main");
+    if(!_np2api_main) {
+        fprintf(stderr, "np2api_main func resolve ERROR\n");
+        return false;
+    }
+    _np2api_end = (NP2API_END)dllcore.resolve("np2api_end");
+    if(!_np2api_end) {
+        fprintf(stderr, "np2api_end func resolve ERROR\n");
+        return false;
+    }
+    _np2api_exec = (NP2API_EXEC)dllcore.resolve("np2api_exec");
+    if(!_np2api_exec) {
+        fprintf(stderr, "np2api_exec func resolve ERROR\n");
+        return false;
+    }
+
+    return true;
+}

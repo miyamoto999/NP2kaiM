@@ -143,6 +143,8 @@ static unsigned int np2_main_cd_drv[5] = {0xF, 0xF, 0xF, 0xF, 0xF};
 UINT8 scrnmode = 0;
 UINT8 changescreeninit = 0;
 
+static void *s_winid = NULL;
+
 static void usage(const char *progname) {
 
 	printf("Usage: %s [options]\n", progname);
@@ -230,10 +232,10 @@ changescreen(UINT8 newmode)
 		scrnmng_destroy();
 		sysmenu_destroy();
 
-		if(scrnmng_create(newmode) == SUCCESS) {
+		if(scrnmng_create(newmode, s_winid) == SUCCESS) {
 			scrnmode = newmode;
 		} else {
-			if(scrnmng_create(scrnmode) != SUCCESS) {
+			if(scrnmng_create(scrnmode, s_winid) != SUCCESS) {
 				return;
 			}
 		}
@@ -424,7 +426,7 @@ extern void attach_disk_swap_interface(void);
 extern int lr_uselasthddmount;
 #endif
 
-int np2_main(int argc, char *argv[]) {
+int np2_main(int argc, char *argv[], void *winid) {
 
 	int		pos;
 	char	*p;
@@ -436,6 +438,8 @@ int np2_main(int argc, char *argv[]) {
   FILEH fcheck;
 
 	modulefile[0] = 0;
+
+	s_winid = winid;
 
 	pos = 1;
 	while(pos < argc) {
@@ -635,7 +639,7 @@ int np2_main(int argc, char *argv[]) {
 	mousemng_initialize();
 
 	scrnmng_initialize();
-	if (scrnmng_create(0) != SUCCESS) {
+	if (scrnmng_create(0, winid) != SUCCESS) {
 		goto np2main_err4;
 	}
 
@@ -695,7 +699,6 @@ int np2_main(int argc, char *argv[]) {
 //printf("hdin:%d\n",HDCount);
 //printf("cdin:%d\n",CDCount);
 
-#if defined(__LIBRETRO__)
 	return(SUCCESS);
 
 #if defined(SUPPORT_RESUME)
@@ -719,12 +722,16 @@ np2main_err1:
 	return(FAILURE);
 }
 
-int np2_end(){
-#else	/* __LIBRETRO__ */
-	np2exec();
-
+void np2_mainloop()
+{
+#if !defined(__LIBRETRO__)
+	while(taskmng_isavail()) {
+		np2_exec();
+	}
 #endif	/* __LIBRETRO__ */
+}
 
+int np2_end(){
 	pccore_cfgupdate();
 #if defined(SUPPORT_RESUME)
 	if (np2oscfg.resume) {
@@ -763,28 +770,6 @@ int np2_end(){
 	SDL_Quit();
 #endif	/* __LIBRETRO__ */
 	return(SUCCESS);
-
-#if !defined(__LIBRETRO__)
-#if defined(SUPPORT_RESUME)
-np2main_err5:
-	pccore_term();
-	S98_trash();
-	soundmng_deinitialize();
-#endif	/* defined(SUPPORT_RESUME) */
-
-np2main_err4:
-	scrnmng_destroy();
-
-np2main_err3:
-	sysmenu_destroy();
-
-np2main_err2:
-	TRACETERM();
-	SDL_Quit();
-
-np2main_err1:
-	return(FAILURE);
-#endif	/* __LIBRETRO__ */
 }
 
 int mmxflag;
@@ -825,79 +810,82 @@ havemmx(void)
 #endif /* GCC_CPU_ARCH_IA32 */
 }
 
-static void np2exec()
+void np2_exec()
 {
-	while(taskmng_isavail()) {
 #if !defined(__LIBRETRO__)
-		if(g_u8ControlState == 1) {
-			statsave_save_d();
-		} else if(g_u8ControlState == 2) {
-			statsave_load_d();
-		}
-		g_u8ControlState = 0;
+	if(g_u8ControlState == 1) {
+		statsave_save_d();
+	} else if(g_u8ControlState == 2) {
+		statsave_load_d();
+	}
+	g_u8ControlState = 0;
 #endif
 
-		taskmng_rol(0);
+	taskmng_rol(0);
 #if defined(EMSCRIPTEN) && !defined(__LIBRETRO__)
 //		emscripten_sleep_with_yield(0);
-		emscripten_sleep(0);
+	emscripten_sleep(0);
 #endif
-		if (np2oscfg.NOWAIT) {
+	if (np2oscfg.NOWAIT) {
+		joymng_sync();
+		pccore_exec(framecnt == 0);
+		if (np2oscfg.DRAW_SKIP) {			// nowait frame skip
+			framecnt++;
+			if (framecnt >= np2oscfg.DRAW_SKIP) {
+				processwait(0);
+			}
+		}
+		else {							// nowait auto skip
+			framecnt = 1;
+			if (timing_getcount()) {
+				processwait(0);
+			}
+		}
+	}
+	else if (np2oscfg.DRAW_SKIP) {		// frame skip
+		if (framecnt < np2oscfg.DRAW_SKIP) {
 			joymng_sync();
 			pccore_exec(framecnt == 0);
-			if (np2oscfg.DRAW_SKIP) {			// nowait frame skip
-				framecnt++;
-				if (framecnt >= np2oscfg.DRAW_SKIP) {
-					processwait(0);
-				}
-			}
-			else {							// nowait auto skip
-				framecnt = 1;
-				if (timing_getcount()) {
-					processwait(0);
-				}
-			}
+			framecnt++;
 		}
-		else if (np2oscfg.DRAW_SKIP) {		// frame skip
-			if (framecnt < np2oscfg.DRAW_SKIP) {
-				joymng_sync();
-				pccore_exec(framecnt == 0);
-				framecnt++;
-			}
-			else {
-				processwait(np2oscfg.DRAW_SKIP);
-			}
+		else {
+			processwait(np2oscfg.DRAW_SKIP);
 		}
-		else {								// auto skip
-			if (!waitcnt) {
-				UINT cnt;
-				joymng_sync();
-				pccore_exec(framecnt == 0);
-				framecnt++;
-				cnt = timing_getcount();
-				if (framecnt > cnt) {
-					waitcnt = framecnt;
-					if (framemax > 1) {
-						framemax--;
-					}
-				}
-				else if (framecnt >= framemax) {
-					if (framemax < 12) {
-						framemax++;
-					}
-					if (cnt >= 12) {
-						timing_reset();
-					}
-					else {
-						timing_setcount(cnt - framecnt);
-					}
-					framereset(0);
-				}
-			}
-			else {
-				processwait(waitcnt);
+	}
+	else {								// auto skip
+		if (!waitcnt) {
+			UINT cnt;
+			joymng_sync();
+			pccore_exec(framecnt == 0);
+			framecnt++;
+			cnt = timing_getcount();
+			if (framecnt > cnt) {
 				waitcnt = framecnt;
+				if (framemax > 1) {
+					framemax--;
+				}
+			}
+			else if (framecnt >= framemax) {
+				if (framemax < 12) {
+					framemax++;
+				}
+				if (cnt >= 12) {
+					timing_reset();
+				}
+				else {
+					timing_setcount(cnt - framecnt);
+				}
+				framereset(0);
 			}
 		}
-	}	
+		else {
+			processwait(waitcnt);
+			waitcnt = framecnt;
+		}
+	}
+}
+
+void *np2_getWinID()
+{
+	return s_winid;
 }

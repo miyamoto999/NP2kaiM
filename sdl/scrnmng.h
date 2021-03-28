@@ -65,7 +65,7 @@ RGB16 scrnmng_makepal16(RGB32 pal32);
 // ---- for SDL
 
 void scrnmng_initialize(void);
-BRESULT scrnmng_create(UINT8 mode);
+BRESULT scrnmng_create(UINT8 mode, const void *winid);
 void scrnmng_destroy(void);
 
 

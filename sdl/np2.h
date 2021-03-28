@@ -87,7 +87,7 @@ enum {
 
 extern	NP2OSCFG	np2oscfg;
 
-extern int np2_main(int argc, char *argv[]);
+extern int np2_main(int argc, char *argv[], void *winid);
 extern int np2_end();
 
 extern int mmxflag;
@@ -152,7 +152,7 @@ extern	NP2OSCFG	np2oscfg;
 extern BOOL s98logging;
 extern int s98log_count;
 
-extern int np2_main(int argc, char *argv[]);
+extern int np2_main(int argc, char *argv[], void *winid);
 extern int np2_end();
 
 extern int mmxflag;
@@ -161,6 +161,10 @@ int havemmx(void);
 extern UINT8 changescreeninit;
 
 #endif	/* __LIBRETRO__ */
+
+extern void np2_mainloop();
+extern void *np2_getWinID();
+extern void np2_exec();
 
 #endif  // _NP2_H_
 

@@ -604,12 +604,11 @@ void file_catname(OEMCHAR *path, const OEMCHAR *name, int maxlen) {
 #if defined(_WINDOWS)
 		if ((csize == 1) && (*path == '\\')) {
 			*path = '\\';
-		}
-#else
+		} else 
+#endif
 		if ((csize == 1) && (*path == '/')) {
 			*path = '/';
 		}
-#endif
 		path += csize;
 	}
 }
@@ -623,9 +622,10 @@ const OEMCHAR	*ret;
 	while((csize = milstr_charsize(path)) != 0) {
 #if defined(_WINDOWS)
 		if ((csize == 1) && (*path == '\\')) {
-#else
-		if ((csize == 1) && (*path == '/')) {
+			ret = path + 1;
+		} else
 #endif
+		if ((csize == 1) && (*path == '/')) {
 			ret = path + 1;
 		}
 		path += csize;
@@ -684,11 +684,11 @@ void file_cutseparator(OEMCHAR *path) {
 
 	pos = (int)strlen(path) - 1;
 	if ((pos > 0) &&							// 2文字以上でー
+		(
 #if defined(_WINDOWS)
-		(path[pos] == '\\') &&					// ケツが \ でー
-#else
-		(path[pos] == '/') &&					// ケツが \ でー
+		(path[pos] == '\\') ||					// ケツが \ か / でー
 #endif
+		(path[pos] == '/')) &&
 		((pos != 1) || (path[0] != '.'))) {		// './' ではなかったら
 		path[pos] = '\0';
 	}
@@ -702,10 +702,11 @@ void file_setseparator(OEMCHAR *path, int maxlen) {
 #if defined(_WINDOWS)
 	if ((pos) && (path[pos-1] != '\\') && ((pos + 2) < maxlen)) {
 		path[pos++] = '\\';
-#else	/* _WINDOWS */
+		path[pos] = '\0';
+	} else
+#endif	/* _WINDOWS */
 	if ((pos) && (path[pos-1] != '/') && ((pos + 2) < maxlen)) {
 		path[pos++] = '/';
-#endif	/* _WINDOWS */
 		path[pos] = '\0';
 	}
 }

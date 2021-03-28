@@ -9,6 +9,8 @@
 #include	<embed/vramhdl.h>
 #include	<embed/menubase/menubase.h>
 #include	"menustr.h"
+#include	"np2.h"
+#include	"ini.h"
 
 #ifdef SUPPORT_NVL_IMAGES
 BOOL nvl_check();
@@ -427,6 +429,7 @@ const OEMCHAR	*title;
 													NELEMENTS(filesel.path));
 		file_cutname(filesel.path);
 	}
+	printf("filesel.path=%s\n", filesel.path);
 	title = NULL;
 	if (prm) {
 		title = prm->title;
@@ -478,14 +481,22 @@ static const FSELPRM scsiprm = {hddtitle, diskfilter, scsiext};
 void filesel_fdd(REG8 drv) {
 
 	OEMCHAR	path[MAX_PATH];
+	char *def;
 
 	if (drv < 4) {
+		def = fdd_diskname(drv);
+		if(!def || (def && def[0] == 0)) {
+			def = fddfolder;
+		}
 #if defined(__LIBRETRO__) || defined(EMSCRIPTEN)
-		if (selectfile(&fddprm, path, NELEMENTS(path), fdd_diskname(drv),drv)) {
+		if (selectfile(&fddprm, path, NELEMENTS(path), def,drv)) {
 #else
-		if (selectfile(&fddprm, path, NELEMENTS(path), fdd_diskname(drv))) {
+		if (selectfile(&fddprm, path, NELEMENTS(path), def)) {
 #endif
 			diskdrv_setfdd(drv, path, 0);
+			file_cpyname(fddfolder, path, sizeof(fddfolder));
+			file_cutname(fddfolder);
+			initsave();
 		}
 	}
 }
@@ -526,12 +537,18 @@ const FSELPRM	*prm;
 		}
 	}
 #endif
+	if(!p || (p && p[0] == 0)) {
+		p = hddfolder;
+	}
 #if defined(__LIBRETRO__) || defined(EMSCRIPTEN)
 	if ((prm) && (selectfile(prm, path, NELEMENTS(path), p,drv+0xff))) {
 #else
 	if ((prm) && (selectfile(prm, path, NELEMENTS(path), p))) {
 #endif
 		diskdrv_setsxsi(drv, path);
+		file_cpyname(hddfolder, path, sizeof(hddfolder));
+		file_cutname(hddfolder);
+		initsave();
 	}
 }
 

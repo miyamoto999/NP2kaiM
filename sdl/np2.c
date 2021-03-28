@@ -466,20 +466,20 @@ int np2_main(int argc, char *argv[], void *winid) {
 #elif defined(EMSCRIPTEN) && !defined(__LIBRETRO__)
 	milstr_ncat(np2cfg.biospath, datadir, sizeof(np2cfg.biospath));
 	file_setcd(np2cfg.biospath);
-#elif defined(_WINDOWS) && !defined(__LIBRETRO__)
-	milstr_ncpy(np2cfg.biospath, "./", sizeof(np2cfg.biospath));
-	file_setcd(np2cfg.biospath);
 #else
 	if(modulefile[0] == 0) {
-		char *config_home = getenv("XDG_CONFIG_HOME");
 		char *home = getenv("HOME");
+#if !defined(_WINDOWS)
+		char *config_home = getenv("XDG_CONFIG_HOME");
 		if (config_home && config_home[0] == '/') {
 			/* base dir */
 			milstr_ncpy(np2cfg.biospath, config_home, sizeof(np2cfg.biospath));
 			milstr_ncat(np2cfg.biospath, "/", sizeof(np2cfg.biospath));
 			milstr_ncat(np2cfg.biospath, appname, sizeof(np2cfg.biospath));
 			milstr_ncat(np2cfg.biospath, "/", sizeof(np2cfg.biospath));
-		} else if (home) {
+		} else
+#endif
+		if (home) {
 			/* base dir */
 			milstr_ncpy(np2cfg.biospath, home, sizeof(np2cfg.biospath));
 			milstr_ncat(np2cfg.biospath, "/.config/", sizeof(np2cfg.biospath));
@@ -487,7 +487,7 @@ int np2_main(int argc, char *argv[], void *winid) {
 			milstr_ncat(np2cfg.biospath, "/", sizeof(np2cfg.biospath));
 		} else {
 			printf("$HOME isn't defined.\n");
-			goto np2main_err1;
+			milstr_ncpy(np2cfg.biospath, "./", sizeof(np2cfg.biospath));
 		}
 		file_setcd(np2cfg.biospath);
 		milstr_ncpy(base_dir, np2cfg.biospath, MAX_PATH);

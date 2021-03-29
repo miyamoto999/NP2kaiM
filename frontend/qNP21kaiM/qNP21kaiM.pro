@@ -11,11 +11,13 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    np2kaiapi.cpp
+    np2kaiapi.cpp \
+    np2widget.cpp
 
 HEADERS += \
     mainwindow.h \
-    np2kaiapi.h
+    np2kaiapi.h \
+    np2widget.h
 
 FORMS += \
     mainwindow.ui

@@ -14,22 +14,26 @@ bool NP2kaiapi::load()
 
     if(!dllcore.load()) {
         fprintf(stderr, "NP21kaiM_core DLL load ERROR\n");
+        unload();
         return false;
     }
 
     _np2api_main = (NP2API_MAIN)dllcore.resolve("np2api_main");
     if(!_np2api_main) {
         fprintf(stderr, "np2api_main func resolve ERROR\n");
+        unload();
         return false;
     }
     _np2api_end = (NP2API_END)dllcore.resolve("np2api_end");
     if(!_np2api_end) {
         fprintf(stderr, "np2api_end func resolve ERROR\n");
+        unload();
         return false;
     }
     _np2api_exec = (NP2API_EXEC)dllcore.resolve("np2api_exec");
     if(!_np2api_exec) {
         fprintf(stderr, "np2api_exec func resolve ERROR\n");
+        unload();
         return false;
     }
 

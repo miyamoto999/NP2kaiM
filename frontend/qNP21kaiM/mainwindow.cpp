@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QMessageBox>
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -8,7 +9,10 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-     if(!api.load()) {
+    timer = new QTimer();
+
+    if(!api.load()) {
+        QMessageBox::critical(this, "qNP2kaiM", "Could not load Core DLL.");
         return;
     }
     int argc = QApplication::arguments().length() ;
@@ -21,8 +25,6 @@ MainWindow::MainWindow(QWidget *parent)
     api.np2api_main(argc, argv, (void*)ui->np2widget->winId());
 
     delete []argv;
-
-    timer = new QTimer();
 
     connect(timer, &QTimer::timeout, this, &MainWindow::idle);
     timer->start(0);
@@ -40,4 +42,12 @@ MainWindow::~MainWindow()
 void MainWindow::idle()
 {
     api.np2api_exec();
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    qDebug() << "########";
+    qDebug() << "key:" << event->key();
+    qDebug() << "nativeScanCode:" << event->nativeScanCode();
+    qDebug() << "nativeVirtualKey:" << event->nativeVirtualKey();
 }

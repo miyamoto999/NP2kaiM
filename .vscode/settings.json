@@ -1,9 +1,2 @@
 {
-    "files.associations": {
-<<<<<<< HEAD
-        "*.res": "c"
-=======
-        "*.tbl": "c"
->>>>>>> vscodeの設定を追加
-    }
 }

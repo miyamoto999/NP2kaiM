@@ -12,15 +12,15 @@ MainWindow::MainWindow(QWidget *parent)
     timer = new QTimer();
 
     if(!api.load()) {
-        QMessageBox::critical(this, "qNP2kaiM", "Could not load Core DLL.");
+        QMessageBox::critical(this, "qNP2kaiM", tr("Could not load Core DLL."));
         return;
     }
     int argc = QApplication::arguments().length() ;
     char **argv = new char*[argc+ 1];
     for(int i = 0; i < argc; i++) {
         argv[i] = QApplication::arguments().at(i).toUtf8().data();
-        argv[i+1] = NULL;
     }
+    argv[argc - 1] = NULL;
 
     api.np2api_main(argc, argv, (void*)ui->np2widget->winId());
 

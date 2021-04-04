@@ -26,3 +26,12 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    qNP21kaiM.qrc
+
+TRANSLATIONS +=  \
+    qNP21kaiM_ja.ts
+
+DISTFILES += \
+    qNP21kaiM_ja.ts

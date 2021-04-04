@@ -33,6 +33,10 @@ xnp21kai_HAXM
 xnp2kai.1*
 xnp21kai.1*
 build
+build_win
+build_mac
+build_linux
+frontend/build-*
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode

@@ -1,8 +1,6 @@
 #ifndef NP2KAIAPI_H
 #define NP2KAIAPI_H
 
-#include <QLibrary>
-
 typedef int (*NP2API_MAIN)(int argc, char *argv[], void *winid);
 typedef int (*NP2API_END)();
 typedef void (*NP2API_EXEC)();

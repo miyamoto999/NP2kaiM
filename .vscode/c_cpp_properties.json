@@ -5,7 +5,9 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "/usr/local/include/SDL2",
-                "${workspaceFolder}/sdl/toolbox/include"
+                "${workspaceFolder}/sdl/toolbox/include",
+                "/usr/local/Cellar/wxmac/3.0.5.1_1/include/wx-3.0/",
+                "${workspaceFolder}/frontend/wxNP21kaiM/**"
             ],
             "defines": [
                 "USE_SDL_VERSION=2",
@@ -21,7 +23,7 @@
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c11",
             "cppStandard": "c++17",
-            "intelliSenseMode": "clang-x64"
+            "intelliSenseMode": "macos-clang-x64"
         }
     ],
     "version": 4

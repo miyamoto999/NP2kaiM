@@ -1,5 +1,6 @@
-#include "np2kaiapi.h"
 #include <QMessageBox>
+#include <QLibrary>
+#include "np2kaiapi.h"
 
 NP2kaiapi::NP2kaiapi()
 {
@@ -10,12 +11,15 @@ NP2kaiapi::NP2kaiapi()
 
 bool NP2kaiapi::load()
 {
-    QLibrary dllcore("NP21kaiM_core");
+    QLibrary dllcore("libNP21kaiM_core.so");
 
     if(!dllcore.load()) {
-        fprintf(stderr, "NP21kaiM_core DLL load ERROR\n");
-        unload();
-        return false;
+        dllcore.setFileName("NP21kaiM_core");
+        if(!dllcore.load()) {
+            fprintf(stderr, "NP21kaiM_core DLL load ERROR\n");
+            unload();
+            return false;
+        }
     }
 
     _np2api_main = (NP2API_MAIN)dllcore.resolve("np2api_main");

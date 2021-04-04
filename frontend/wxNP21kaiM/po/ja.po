@@ -1,0 +1,23 @@
+# Japanese translations for wxNP package
+# wxNP パッケージに対する英訳.
+# Copyright (C) 2021 THE wxNP'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the wxNP package.
+# 宮本昌威 <masanori.miyamoto@gmail.com>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: wxNP 21kaiM\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-05 00:14+0900\n"
+"PO-Revision-Date: 2021-04-04 14:11+0900\n"
+"Last-Translator: 宮本昌威 <masanori.miyamoto@gmail.com>\n"
+"Language-Team: Japanese <translation-team-ja@lists.sourceforge.net>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: wxNP21kaiMBaseFrame.h:44
+msgid "wxNP21kaiM"
+msgstr ""

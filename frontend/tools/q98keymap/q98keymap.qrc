@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/i18n">
+        <file>q98keymap_ja.qm</file>
+    </qresource>
+</RCC>

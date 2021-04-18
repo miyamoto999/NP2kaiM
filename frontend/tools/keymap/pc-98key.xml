@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="Electron" modified="2021-04-18T12:37:06.494Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/14.5.1 Chrome/89.0.4389.82 Electron/12.0.1 Safari/537.36" etag="C1EmX9zp93BGKjlbifXd" version="14.5.1" type="device">
+  <diagram id="Z1hw1l4GSJISw_dmqOmV" name="ページ1">
+    <mxGraphModel dx="1106" dy="797" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <object label="STOP" keycode="KEYCODE98_STOP" keycode-val="0x60" id="tLrqthVxpUuvEY6UjJdS-1">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="40" y="40" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="COPY" keycode="KEYCODE98_COPY" keycode-val="0x61" id="tLrqthVxpUuvEY6UjJdS-2">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="100" y="40" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="1" keycode="KEYCODE98_1" keycode-val="0x01" id="tLrqthVxpUuvEY6UjJdS-3">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="100" y="100" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="2" keycode="KEYCODE98_2" keycode-val="0x02" id="tLrqthVxpUuvEY6UjJdS-4">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="140" y="100" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="5" keycode="KEYCODE98_5" keycode-val="0x05" id="tLrqthVxpUuvEY6UjJdS-5">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="260" y="100" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="8" keycode="KEYCODE98_8" keycode-val="0x08" id="tLrqthVxpUuvEY6UjJdS-6">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="380" y="100" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="6" keycode="KEYCODE98_6" keycode-val="0x06" id="tLrqthVxpUuvEY6UjJdS-7">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="300" y="100" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="3" keycode="KEYCODE98_3" keycode-val="0x03" id="tLrqthVxpUuvEY6UjJdS-8">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="180" y="100" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="7" keycode="KEYCODE98_7" keycode-val="0x07" id="tLrqthVxpUuvEY6UjJdS-9">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="340" y="100" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="4" keycode="KEYCODE98_4" keycode-val="0x04" id="tLrqthVxpUuvEY6UjJdS-10">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="220" y="100" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="9" keycode="KEYCODE98_9" keycode-val="0x09" id="tLrqthVxpUuvEY6UjJdS-11">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="420" y="100" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="0" keycode="KEYCODE98_0" keycode-val="0x0a" id="tLrqthVxpUuvEY6UjJdS-12">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="460" y="100" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="-" keycode="KEYCODE98_MINUS" keycode-val="0x0b" id="tLrqthVxpUuvEY6UjJdS-13">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="500" y="100" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="^" keycode="KEYCODE98_CARET" keycode-val="0x0c" id="tLrqthVxpUuvEY6UjJdS-14">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="540" y="100" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="\" keycode="KEYCODE98_YEN" keycode-val="0x0d" id="tLrqthVxpUuvEY6UjJdS-15">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="580" y="100" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="ESC" keycode="KEYCODE98_ESC" keycode-val="0x00" id="tLrqthVxpUuvEY6UjJdS-16">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="40" y="100" width="60" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="BS" keycode="KEYCODE98_BS" keycode-val="0x0e" id="tLrqthVxpUuvEY6UjJdS-17">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="620" y="100" width="60" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="INS" keycode="KEYCODE98_INS" keycode-val="0x38" id="tLrqthVxpUuvEY6UjJdS-18">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="700" y="100" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="DEL" keycode="KEYCODE98_DEL" keycode-val="0x39" id="tLrqthVxpUuvEY6UjJdS-21">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="740" y="100" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="CLR" keycode="KEYCODE98_CLR" keycode-val="0x3e" id="tLrqthVxpUuvEY6UjJdS-22">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="800" y="100" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="HELP" keycode="KEYCODE98_HELP" keycode-val="0x3f" id="tLrqthVxpUuvEY6UjJdS-24">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="840" y="100" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="-" keycode="KEYCODE98_TENKEY_MINUS" keycode-val="0x40" id="tLrqthVxpUuvEY6UjJdS-25">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="880" y="100" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="/" keycode="KEYCODE98_TENKEY_SLASH" keycode-val="0x41" id="tLrqthVxpUuvEY6UjJdS-26">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="920" y="100" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="f1" keycode="KEYCODE98_F1" keycode-val="0x62" id="tLrqthVxpUuvEY6UjJdS-27">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="160" y="40" width="50" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="f2" keycode="KEYCODE98_F2" keycode-val="0x63" id="tLrqthVxpUuvEY6UjJdS-30">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="210" y="40" width="50" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="f3" keycode="KEYCODE98_F3" keycode-val="0x64" id="tLrqthVxpUuvEY6UjJdS-31">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="260" y="40" width="50" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="f4" keycode="KEYCODE98_F4" keycode-val="0x65" id="tLrqthVxpUuvEY6UjJdS-32">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="310" y="40" width="50" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="f5" keycode="KEYCODE98_F5" keycode-val="0x66" id="tLrqthVxpUuvEY6UjJdS-33">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="360" y="40" width="50" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="f6" keycode="KEYCODE98_F6" keycode-val="0x67" id="tLrqthVxpUuvEY6UjJdS-34">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="430" y="40" width="50" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="f7" keycode="KEYCODE98_F7" keycode-val="0x68" id="tLrqthVxpUuvEY6UjJdS-35">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="480" y="40" width="50" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="f8" keycode="KEYCODE98_F8" keycode-val="0x69" id="tLrqthVxpUuvEY6UjJdS-36">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="530" y="40" width="50" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="f9" keycode="KEYCODE98_F9" keycode-val="0x6a" id="tLrqthVxpUuvEY6UjJdS-37">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="580" y="40" width="50" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="f10" keycode="KEYCODE98_F10" keycode-val="0x6b" id="tLrqthVxpUuvEY6UjJdS-38">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="630" y="40" width="50" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="vf1" keycode="KEYCODE98_VF1" keycode-val="0x52" id="tLrqthVxpUuvEY6UjJdS-40">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="710" y="40" width="50" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="vf2" keycode="KEYCODE98_VF2" keycode-val="0x53" id="tLrqthVxpUuvEY6UjJdS-41">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="760" y="40" width="50" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="vf3" keycode="KEYCODE98_VF3" keycode-val="0x54" id="tLrqthVxpUuvEY6UjJdS-42">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="810" y="40" width="50" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="vf4" keycode="KEYCODE98_VF4" keycode-val="0x55" id="tLrqthVxpUuvEY6UjJdS-43">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="860" y="40" width="50" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="vf5" keycode="KEYCODE98_VF5" keycode-val="0x56" id="tLrqthVxpUuvEY6UjJdS-44">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="910" y="40" width="50" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="Q" keycode="KEYCODE98_Q" keycode-val="0x10" id="tLrqthVxpUuvEY6UjJdS-45">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="110" y="140" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="W" keycode="KEYCODE98_W" keycode-val="0x11" id="tLrqthVxpUuvEY6UjJdS-46">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="150" y="140" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="E" keycode="KEYCODE98_E" keycode-val="0x12" id="tLrqthVxpUuvEY6UjJdS-48">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="190" y="140" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="R" keycode="KEYCODE98_R" keycode-val="0x13" id="tLrqthVxpUuvEY6UjJdS-50">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="230" y="140" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="T" keycode="KEYCODE98_T" keycode-val="0x14" id="tLrqthVxpUuvEY6UjJdS-51">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="270" y="140" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="Y" keycode="KEYCODE98_Y" keycode-val="0x15" id="tLrqthVxpUuvEY6UjJdS-52">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="310" y="140" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="U" keycode="KEYCODE98_U" keycode-val="0x16" id="tLrqthVxpUuvEY6UjJdS-53">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="350" y="140" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="I" keycode="KEYCODE98_I" keycode-val="0x17" id="tLrqthVxpUuvEY6UjJdS-54">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="390" y="140" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="O" keycode="KEYCODE98_O" keycode-val="0x18" id="tLrqthVxpUuvEY6UjJdS-55">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="430" y="140" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="P" keycode="KEYCODE98_P" keycode-val="0x19" id="tLrqthVxpUuvEY6UjJdS-56">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="470" y="140" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="@" keycode="KEYCODE98_ATMARK" keycode-val="0x1a" id="tLrqthVxpUuvEY6UjJdS-57">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="510" y="140" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="[" keycode="KEYCODE98_LBRACKET" keycode-val="0x1b" id="tLrqthVxpUuvEY6UjJdS-58">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="550" y="140" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="TAB" keycode="KEYCODE98_TAB" keycode-val="0x0f" id="tLrqthVxpUuvEY6UjJdS-59">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="40" y="140" width="70" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="RU" keycode="KEYCODE98_ROLLUP" keycode-val="0x36" id="tLrqthVxpUuvEY6UjJdS-60">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="700" y="140" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="RD" keycode="KEYCODE98_ROLLDOWN" keycode-val="0x37" id="tLrqthVxpUuvEY6UjJdS-61">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="740" y="140" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="7" keycode="KEYCODE98_TENKEY_7" keycode-val="0x42" id="tLrqthVxpUuvEY6UjJdS-62">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="800" y="140" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="8" keycode="KEYCODE98_TENKEY_8" keycode-val="0x43" id="tLrqthVxpUuvEY6UjJdS-64">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="840" y="140" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="9" keycode="KEYCODE98_TENKEY_9" keycode-val="0x44" id="tLrqthVxpUuvEY6UjJdS-65">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="880" y="140" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="*" keycode="KEYCODE98_TENKEY_ASTERISK" keycode-val="0x45" id="tLrqthVxpUuvEY6UjJdS-66">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="920" y="140" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="A" keycode="KEYCODE98_A" keycode-val="0x1d" id="tLrqthVxpUuvEY6UjJdS-67">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="120" y="180" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="CTRL" keycode="KEYCODE98_CTRL" keycode-val="0x74" id="tLrqthVxpUuvEY6UjJdS-68">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="40" y="180" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="CAPS" keycode="KEYCODE98_CAPS" keycode-val="0x71" id="tLrqthVxpUuvEY6UjJdS-69">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="80" y="180" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="S" keycode="KEYCODE98_S" keycode-val="0x1e" id="tLrqthVxpUuvEY6UjJdS-70">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="160" y="180" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="D" keycode="KEYCODE98_D" keycode-val="0x1f" id="tLrqthVxpUuvEY6UjJdS-71">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="200" y="180" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="F" keycode="KEYCODE98_F" keycode-val="0x20" id="tLrqthVxpUuvEY6UjJdS-72">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="240" y="180" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="G" keycode="KEYCODE98_G" keycode-val="0x21" id="tLrqthVxpUuvEY6UjJdS-73">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="280" y="180" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="H" keycode="KEYCODE98_H" keycode-val="0x22" id="tLrqthVxpUuvEY6UjJdS-74">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="320" y="180" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="J" keycode="KEYCODE98_J" keycode-val="0x23" id="tLrqthVxpUuvEY6UjJdS-75">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="360" y="180" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="K" keycode="KEYCODE98_K" keycode-val="0x24" id="tLrqthVxpUuvEY6UjJdS-76">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="400" y="180" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="L" keycode="KEYCODE98_L" keycode-val="0x25" id="tLrqthVxpUuvEY6UjJdS-77">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="440" y="180" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label=";" keycode="KEYCODE98_SEMICOLON" keycode-val="0x26" id="tLrqthVxpUuvEY6UjJdS-78">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="480" y="180" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label=":" keycode="KEYCODE98_COLON" keycode-val="0x27" id="tLrqthVxpUuvEY6UjJdS-79">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="520" y="180" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="]" keycode="KEYCODE98_RBRACKET" keycode-val="0x28" id="tLrqthVxpUuvEY6UjJdS-80">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="560" y="180" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="UP" keycode="KEYCODE98_UP" keycode-val="0x3a" id="tLrqthVxpUuvEY6UjJdS-81">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="700" y="180" width="80" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="4" keycode="KEYCODE98_TENKEY_4" keycode-val="0x46" id="tLrqthVxpUuvEY6UjJdS-82">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="800" y="180" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="5" keycode="KEYCODE98_TENKEY_5" keycode-val="0x47" id="tLrqthVxpUuvEY6UjJdS-83">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="840" y="180" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="6" keycode="KEYCODE98_TENKEY_6" keycode-val="0x48" id="tLrqthVxpUuvEY6UjJdS-84">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="880" y="180" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="+" keycode="KEYCODE98_TENKEY_PLUS" keycode-val="0x49" id="tLrqthVxpUuvEY6UjJdS-85">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="920" y="180" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="Z" keycode="KEYCODE98_Z" keycode-val="0x29" id="tLrqthVxpUuvEY6UjJdS-88">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="140" y="220" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="X" keycode="KEYCODE98_X" keycode-val="0x2a" id="tLrqthVxpUuvEY6UjJdS-89">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="180" y="220" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="SHIFT" keycode="KEYCODE98_LSHIFT" keycode-val="0x70" id="tLrqthVxpUuvEY6UjJdS-90">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="40" y="220" width="100" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="C" keycode="KEYCODE98_C" keycode-val="0x2b" id="tLrqthVxpUuvEY6UjJdS-92">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="220" y="220" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="V" keycode="KEYCODE98_V" keycode-val="0x2c" id="tLrqthVxpUuvEY6UjJdS-93">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="260" y="220" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="B" keycode="KEYCODE98_B" keycode-val="0x2d" id="tLrqthVxpUuvEY6UjJdS-94">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="300" y="220" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="N" keycode="KEYCODE98_N" keycode-val="0x2e" id="tLrqthVxpUuvEY6UjJdS-95">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="340" y="220" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="M" keycode="KEYCODE98_M" keycode-val="0x2f" id="tLrqthVxpUuvEY6UjJdS-96">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="380" y="220" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="," keycode="KEYCODE98_COMMA" keycode-val="0x30" id="tLrqthVxpUuvEY6UjJdS-97">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="420" y="220" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="." keycode="KEYCODE98_PERIOD" keycode-val="0x31" id="tLrqthVxpUuvEY6UjJdS-98">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="460" y="220" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="/" keycode="KEYCODE98_SLASH" keycode-val="0x32" id="tLrqthVxpUuvEY6UjJdS-99">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="500" y="220" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="\" keycode="KEYCODE98_BACKSLASH" keycode-val="0x33" id="tLrqthVxpUuvEY6UjJdS-100">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="540" y="220" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="RET" keycode="KEYCODE98_RET" keycode-val="0x1c" id="tLrqthVxpUuvEY6UjJdS-101">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="600" y="140" width="80" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="SHIFT" keycode="KEYCODE98_RSHIFT" keycode-val="0x7d" id="tLrqthVxpUuvEY6UjJdS-102">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="580" y="220" width="100" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="LEFT" keycode="KEYCODE98_LEFT" keycode-val="0x3b" id="tLrqthVxpUuvEY6UjJdS-103">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="700" y="220" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="RIGHT" keycode="KEYCODE98_RIGHT" keycode-val="0x3c" id="tLrqthVxpUuvEY6UjJdS-104">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="740" y="220" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="1" keycode="KEYCODE98_TENKEY_1" keycode-val="0x4a" id="tLrqthVxpUuvEY6UjJdS-105">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="800" y="220" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="2" keycode="KEYCODE98_TENKEY_2" keycode-val="0x4b" id="tLrqthVxpUuvEY6UjJdS-106">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="840" y="220" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="3" keycode="KEYCODE98_TENKEY_3" keycode-val="0x4c" id="tLrqthVxpUuvEY6UjJdS-107">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="880" y="220" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="=" keycode="KEYCODE98_TENKEY_EQUAL" keycode-val="0x4d" id="tLrqthVxpUuvEY6UjJdS-108">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="920" y="220" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="kana" keycode="KEYCODE98_KANA" keycode-val="0x72" id="tLrqthVxpUuvEY6UjJdS-110">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="120" y="260" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="GRPH" keycode="KEYCODE98_GRPH" keycode-val="0x73" id="tLrqthVxpUuvEY6UjJdS-111">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="160" y="260" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="NFER" keycode="KEYCODE98_NFER" keycode-val="0x51" id="tLrqthVxpUuvEY6UjJdS-112">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="200" y="260" width="60" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="SPACE" keycode="KEYCODE98_SPACE" keycode-val="0x34" id="tLrqthVxpUuvEY6UjJdS-113">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="260" y="260" width="260" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="XFER" keycode="KEYCODE98_XFER" keycode-val="0x35" id="tLrqthVxpUuvEY6UjJdS-114">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="520" y="260" width="60" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="DOWN" keycode="KEYCODE98_DOWN" keycode-val="0x3d" id="tLrqthVxpUuvEY6UjJdS-115">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="700" y="260" width="80" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="0" keycode="KEYCODE98_TENKEY_0" keycode-val="0x4e" id="tLrqthVxpUuvEY6UjJdS-117">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="800" y="260" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="," keycode="KEYCODE98_TENKKEY_COMMA" keycode-val="0x4f" id="tLrqthVxpUuvEY6UjJdS-118">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="840" y="260" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="." keycode="KEYCODE98_TENKEY_PERIOD" keycode-val="0x50" id="tLrqthVxpUuvEY6UjJdS-120">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="880" y="260" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="RET" keycode="KEYCODE98_TENKEY_RET" keycode-val="0x1c" id="tLrqthVxpUuvEY6UjJdS-121">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="920" y="260" width="40" height="40" as="geometry" />
+          </mxCell>
+        </object>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

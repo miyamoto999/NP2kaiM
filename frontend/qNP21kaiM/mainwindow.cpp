@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QMessageBox>
 #include <QDebug>
+#include "kbddrv.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -32,10 +33,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    timer->stop();
-    api.unload();
-    api.np2api_end();
-
     delete ui;
 }
 
@@ -46,8 +43,26 @@ void MainWindow::idle()
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
-    qDebug() << "########";
-    qDebug() << "key:" << event->key();
-    qDebug() << "nativeScanCode:" << event->nativeScanCode();
-    qDebug() << "nativeVirtualKey:" << event->nativeVirtualKey();
+    quint8 keycode98 = KbdDrv::keycodeTransrate(event->nativeVirtualKey());
+    if(keycode98 == KEYCODE98_NC) {
+        return;
+    }
+    api.np2api_keydown(keycode98);
 }
+
+void MainWindow::keyReleaseEvent(QKeyEvent *event)
+{
+    quint8 keycode98 = KbdDrv::keycodeTransrate(event->nativeVirtualKey());
+    if(keycode98 == KEYCODE98_NC) {
+        return;
+    }
+    api.np2api_keyup(keycode98);
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    timer->stop();
+    api.unload();
+    api.np2api_end();
+}
+

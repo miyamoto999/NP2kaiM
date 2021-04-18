@@ -7,6 +7,8 @@ NP2kaiapi::NP2kaiapi()
     _np2api_main = NULL;
     _np2api_end = NULL;
     _np2api_exec = NULL;
+    _np2api_keyup = NULL;
+    _np2api_keydown = NULL;
 }
 
 bool NP2kaiapi::load()
@@ -37,6 +39,20 @@ bool NP2kaiapi::load()
     _np2api_exec = (NP2API_EXEC)dllcore.resolve("np2api_exec");
     if(!_np2api_exec) {
         fprintf(stderr, "np2api_exec func resolve ERROR\n");
+        unload();
+        return false;
+    }
+
+    _np2api_keyup = (NP2API_KEYUPDOWN)dllcore.resolve("np2api_keyup");
+    if(!_np2api_keyup) {
+        fprintf(stderr, "np2api_keyup func resolve ERROR\n");
+        unload();
+        return false;
+    }
+
+    _np2api_keydown = (NP2API_KEYUPDOWN)dllcore.resolve("np2api_keydown");
+    if(!_np2api_keydown) {
+        fprintf(stderr, "np2api_keyudown func resolve ERROR\n");
         unload();
         return false;
     }

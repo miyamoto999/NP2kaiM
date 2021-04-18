@@ -17,6 +17,10 @@
 #include <wx/settings.h>
 #include <wx/string.h>
 #include <wx/sizer.h>
+#include <wx/bitmap.h>
+#include <wx/image.h>
+#include <wx/icon.h>
+#include <wx/menu.h>
 #include <wx/frame.h>
 
 ///////////////////////////////////////////////////////////////////////////
@@ -31,12 +35,15 @@ class wxNP21kaiMBaseFrame : public wxFrame
 
 	protected:
 		wxPanel* m_panel1;
+		wxMenuBar* m_menubar1;
+		wxMenu* m_menu1;
 
 		// Virtual event handlers, overide them in your derived class
 		virtual void OnClose( wxCloseEvent& event ) { event.Skip(); }
 		virtual void OnIdle( wxIdleEvent& event ) { event.Skip(); }
 		virtual void OnKeyDown( wxKeyEvent& event ) { event.Skip(); }
 		virtual void OnShow( wxShowEvent& event ) { event.Skip(); }
+		virtual void OnExit( wxCommandEvent& event ) { event.Skip(); }
 
 
 	public:

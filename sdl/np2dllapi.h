@@ -15,6 +15,8 @@ extern "C" {
 DLLEXPORT int np2api_main(int argc, char *argv[], void *winid);
 DLLEXPORT int np2api_end();
 DLLEXPORT void np2api_exec();
+DLLEXPORT void np2api_keydown(uint8_t keycode98);
+DLLEXPORT void np2api_keyup(uint8_t keycode98);
 
 #ifdef __cplusplus
 }

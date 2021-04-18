@@ -165,6 +165,7 @@ extern UINT8 changescreeninit;
 extern void np2_mainloop();
 extern void *np2_getWinID();
 extern void np2_exec();
+extern void np2_core_exec();
 
 #endif  // _NP2_H_
 

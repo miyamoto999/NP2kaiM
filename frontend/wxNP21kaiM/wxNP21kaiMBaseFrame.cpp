@@ -22,6 +22,16 @@ wxNP21kaiMBaseFrame::wxNP21kaiMBaseFrame( wxWindow* parent, wxWindowID id, const
 
 	this->SetSizer( bSizer1 );
 	this->Layout();
+	m_menubar1 = new wxMenuBar( 0 );
+	m_menu1 = new wxMenu();
+	wxMenuItem* m_mnuExit;
+	m_mnuExit = new wxMenuItem( m_menu1, wxID_EXIT, wxString( _("&Exit") ) , wxEmptyString, wxITEM_NORMAL );
+	m_menu1->Append( m_mnuExit );
+
+	m_menubar1->Append( m_menu1, _("&File") );
+
+	this->SetMenuBar( m_menubar1 );
+
 
 	this->Centre( wxBOTH );
 
@@ -31,6 +41,7 @@ wxNP21kaiMBaseFrame::wxNP21kaiMBaseFrame( wxWindow* parent, wxWindowID id, const
 	this->Connect( wxEVT_KEY_DOWN, wxKeyEventHandler( wxNP21kaiMBaseFrame::OnKeyDown ) );
 	this->Connect( wxEVT_SHOW, wxShowEventHandler( wxNP21kaiMBaseFrame::OnShow ) );
 	m_panel1->Connect( wxEVT_KEY_DOWN, wxKeyEventHandler( wxNP21kaiMBaseFrame::OnKeyDown ), NULL, this );
+	m_menu1->Bind(wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxNP21kaiMBaseFrame::OnExit ), this, m_mnuExit->GetId());
 }
 
 wxNP21kaiMBaseFrame::~wxNP21kaiMBaseFrame()

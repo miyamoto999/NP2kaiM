@@ -27,7 +27,8 @@ private slots:
     void idle();
 
 protected:
-    virtual void keyPressEvent(QKeyEvent *event);
-
+    virtual void keyPressEvent(QKeyEvent *event) override;
+    virtual void keyReleaseEvent(QKeyEvent *event) override;
+    virtual void closeEvent(QCloseEvent *event) override;
 };
 #endif // MAINWINDOW_H

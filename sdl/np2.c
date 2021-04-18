@@ -277,7 +277,9 @@ static void processwait(UINT cnt) {
 			}
 		}
 #endif
+#ifndef NP21KAIM_CORE_DLL
 		taskmng_sleep(1);
+#endif
 	}
 }
 
@@ -820,8 +822,13 @@ void np2_exec()
 	}
 	g_u8ControlState = 0;
 #endif
-
 	taskmng_rol(0);
+
+	np2_core_exec();
+}
+
+void np2_core_exec()
+{
 #if defined(EMSCRIPTEN) && !defined(__LIBRETRO__)
 //		emscripten_sleep_with_yield(0);
 	emscripten_sleep(0);

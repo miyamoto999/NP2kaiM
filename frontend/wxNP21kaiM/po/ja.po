@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxNP 21kaiM\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-05 00:14+0900\n"
+"POT-Creation-Date: 2021-04-05 00:51+0900\n"
 "PO-Revision-Date: 2021-04-04 14:11+0900\n"
 "Last-Translator: 宮本昌威 <masanori.miyamoto@gmail.com>\n"
 "Language-Team: Japanese <translation-team-ja@lists.sourceforge.net>\n"
@@ -18,6 +18,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: wxNP21kaiMBaseFrame.h:44
+#: wxNP21kaiMBaseFrame.cpp:28
+msgid "&Exit"
+msgstr ""
+
+#: wxNP21kaiMBaseFrame.cpp:31
+msgid "&File"
+msgstr ""
+
+#: wxNP21kaiMBaseFrame.h:51
 msgid "wxNP21kaiM"
 msgstr ""

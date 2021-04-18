@@ -289,7 +289,7 @@ int pre_main(const char *argv) {
 
    dosio_init();
 
-   i=np2_main(PARAMCOUNT,( char **)xargv_cmd);
+   i=np2_main(PARAMCOUNT,( char **)xargv_cmd, NULL);
 
    xargv_cmd[PARAMCOUNT - 2] = NULL;
 

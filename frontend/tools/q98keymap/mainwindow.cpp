@@ -110,7 +110,7 @@ void MainWindow::OnKeymapClick(int index)
         } else {
             data.flag |= KEYDATA_HAVE_DATA;
         }
-        keydatas_keydataupdate(keydatas[index].keyname, data);
+        keydatas_keydataupdate(keydatas[index].keycode98, data);
         update();
     }
 }

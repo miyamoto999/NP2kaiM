@@ -54,7 +54,6 @@ enum _keycode98 {
     KEYCODE98_P = 0x19,
     KEYCODE98_ATMARK = 0x1a,
     KEYCODE98_LBRACKET = 0x1b,
-    KEYCODE98_TENKEY_RET = 0x1c,
     KEYCODE98_RET = 0x1c,
     KEYCODE98_A = 0x1d,
     KEYCODE98_S = 0x1e,
@@ -132,25 +131,19 @@ enum _keycode98 {
     KEYCODE98_GRPH = 0x73,
     KEYCODE98_CTRL = 0x74,
     KEYCODE98_RSHIFT = 0x7d,
-    KEYCODE98_NC = 0xff,
 };
 
-/**
-* @brief キーデータ構造体
-* @details
-*       キーデータ構造体
-*/
 typedef struct _keydata {
-    QString keyname;                                //! キー名称
-    QString keytop;                                     //! キートップ文字
-    int keycode98;                                      //! PC-98キーコード
-    QRect rect;                                             //! キー矩形の座標
-    int key;                                                    //! Qtキーコード
-    Qt::KeyboardModifiers modifiers;        //! Qtキーイベントのmodifiers
-    quint32 nativeModifiers;                        //! QtキーイベントのnativeModifiers
-    quint32 nativeScanCode;                     //! QtキーイベントのnativeScanCode
-    quint32 nativeVirtualKey;                       //! QtキーイベントのnativeVirtualKey
-    int flag;                                                       //! データを持っているか、キーダウン中かの状態を示すフラグ
+    QString keyname;                                // キー名称
+    QString keytop;
+    int keycode98;
+    QRect rect;                                             // キーの座標
+    int key;                                                    // キーコード
+    Qt::KeyboardModifiers modifiers;
+    quint32 nativeModifiers;
+    quint32 nativeScanCode;
+    quint32 nativeVirtualKey;
+    int flag;
 } KEYDATA;
 
 extern KEYDATA keydatas[];
@@ -175,7 +168,7 @@ void keydatas_keydown(int key);
 // キーデータをキーアップ状態にする。
 void keydatas_keyup(int key);
 // キーデータを更新にする。
-void keydatas_keydataupdate(const QString &keyname, const KEYDATA &data);
+void keydatas_keydataupdate(const int keycode98, const KEYDATA &data);
 // 指定キーコードのキーデータのインデックスを返す。
 int keydatas_searchKeyDataFromKey(int keycode);
 // キーデータをクリアする。

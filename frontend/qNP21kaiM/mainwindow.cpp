@@ -43,7 +43,11 @@ void MainWindow::idle()
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
+#ifdef Q_OS_MACOS
     quint8 keycode98 = KbdDrv::keycodeTransrate(event->nativeVirtualKey());
+#else
+    quint8 keycode98 = KbdDrv::keycodeTransrate(event->nativeScanCode());
+#endif
     if(keycode98 == KEYCODE98_NC) {
         return;
     }
@@ -52,7 +56,11 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
 void MainWindow::keyReleaseEvent(QKeyEvent *event)
 {
+#ifdef Q_OS_MACOS
     quint8 keycode98 = KbdDrv::keycodeTransrate(event->nativeVirtualKey());
+#else
+    quint8 keycode98 = KbdDrv::keycodeTransrate(event->nativeScanCode());
+#endif
     if(keycode98 == KEYCODE98_NC) {
         return;
     }

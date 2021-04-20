@@ -119,7 +119,7 @@ enum _keycode98 {
 
 class KbdDrv {
 public:
-    static quint8 keycodeTransrate(quint32 nativeVirtualKey);
+    static quint8 keycodeTransrate(quint32 keycode);
 };
 
 #endif // KBDDRV_H

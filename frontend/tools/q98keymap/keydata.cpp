@@ -211,7 +211,7 @@ bool keydatas_saveFile(const QString &filename)
         out << keydatas[i].modifiers << "\t";
         out << keydatas[i].nativeModifiers << "\t";
         out << keydatas[i].nativeScanCode << "\t";
-        out << keydatas[i].nativeVirtualKey << Qt::endl;
+        out << keydatas[i].nativeVirtualKey << "\n";
         i++;
     }
     file.close();

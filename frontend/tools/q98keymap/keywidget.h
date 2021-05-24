@@ -45,7 +45,7 @@ private:
     /**
     * マージン
     */
-    const int margen = 10;
+    const int margin = 10;
     /**
     * 表示拡縮率
     */

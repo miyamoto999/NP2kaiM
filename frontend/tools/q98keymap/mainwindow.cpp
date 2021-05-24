@@ -187,7 +187,6 @@ void MainWindow::menuOpen()
         m_openFilename = QString();
         if(!keydatas_openFile(filename)) {
             QMessageBox::about(this, tr("Open"), tr("File Open ERROR"));
-            keydatas_clearData();
        } else {
             m_openFilename = filename;
         }
@@ -246,7 +245,7 @@ void MainWindow::menuSaveAs()
 void MainWindow::menuClose()
 {
     if(keydatas_update) {
-        if(QMessageBox::question(this, tr("Open"), tr("Your changes have not been saved yet.\nAre you sure?")) == QMessageBox::No) {
+        if(QMessageBox::question(this, tr("Close"), tr("Your changes have not been saved yet.\nAre you sure?")) == QMessageBox::No) {
             return;
         }
     }
@@ -276,7 +275,7 @@ void MainWindow::menuQuit()
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     if(keydatas_update) {
-        if(QMessageBox::question(this, tr("Open"), tr("Your changes have not been saved yet.\nAre you sure?")) == QMessageBox::No) {
+        if(QMessageBox::question(this, tr("Close"), tr("Your changes have not been saved yet.\nAre you sure?")) == QMessageBox::No) {
             event->ignore();
             return;
         }

@@ -30,7 +30,7 @@ KeyWidget::KeyWidget(QWidget *parent) : QWidget(parent)
 {
     m_keyboardRect = keydatas_getKeyboardWhole();
 
-    QSize size(m_keyboardRect.width() + margen * 2, m_keyboardRect.height() + margen * 2);
+    QSize size(m_keyboardRect.width() + margin * 2, m_keyboardRect.height() + margin * 2);
     m_keyboardImage = new QImage(size, QImage::Format_RGB32);
 
     drawKeyboardImage();
@@ -64,7 +64,7 @@ void KeyWidget::drawKeyboardImage()
 
     int i = 0;
     while(!keydatas[i].keyname.isEmpty()) {
-        QRect r = QRect(keydatas[i].rect.x() + margen, keydatas[i].rect.y() + margen, keydatas[i].rect.width(), keydatas[i].rect.height());
+        QRect r = QRect(keydatas[i].rect.x() + margin, keydatas[i].rect.y() + margin, keydatas[i].rect.width(), keydatas[i].rect.height());
         painter.setPen(Qt::black);
         if(keydatas[i].flag & KEYDATA_INPUT_KEY) {
             painter.fillRect(r, Qt::cyan);
@@ -118,8 +118,8 @@ void	KeyWidget::paintEvent(QPaintEvent *event)
  */
 void KeyWidget::mousePressEvent(QMouseEvent *event)
 {
-    int x = (int)((double)(event->x() - m_offx) / m_rate - margen);
-    int y = (int)((double)(event->y() - m_offy) / m_rate - margen);
+    int x = (int)((double)(event->x() - m_offx) / m_rate - margin);
+    int y = (int)((double)(event->y() - m_offy) / m_rate - margin);
 
     int i = 0;
     while(!keydatas[i].keyname.isEmpty()) {

@@ -19,6 +19,8 @@ NP2kaiapi::NP2kaiapi()
     _np2api_main = NULL;
     _np2api_end = NULL;
     _np2api_exec = NULL;
+    _np2api_keyup = NULL;
+    _np2api_keydown = NULL;
     m_dllcore = NULL;
 }
 
@@ -34,12 +36,15 @@ bool NP2kaiapi::load()
 {
     m_dllcore = DLOPEN("libNP21kaiM_core.dylib");
     if(!m_dllcore) {
-        m_dllcore = DLOPEN("libNP21kaiM_core.so");
+        m_dllcore = DLOPEN("./libNP21kaiM_core.so");
         if(!m_dllcore) {
-            m_dllcore = DLOPEN("NP21kaiM_core.dll");
+            m_dllcore = DLOPEN("libNP21kaiM_core.so");
             if(!m_dllcore) {
-                fprintf(stderr, "NP21kaiM_core DLL load ERROR\n");
-                return false;
+                m_dllcore = DLOPEN("NP21kaiM_core.dll");
+                if(!m_dllcore) {
+                    fprintf(stderr, "NP21kaiM_core DLL load ERROR\n");
+                    return false;
+                }
             }
         }
     }
@@ -58,6 +63,18 @@ bool NP2kaiapi::load()
     _np2api_exec = (NP2API_EXEC)DLSYM(m_dllcore, "np2api_exec");
     if(!_np2api_exec) {
         fprintf(stderr, "np2api_exec func resolve ERROR\n");
+        unload();
+        return false;
+    }
+    _np2api_keyup = (NP2API_KEYUPDOWN)DLSYM(m_dllcore, "np2api_keyup");
+    if(!_np2api_keyup) {
+        fprintf(stderr, "np2api_keyup func resolve ERROR\n");
+        unload();
+        return false;
+    }
+    _np2api_keydown = (NP2API_KEYUPDOWN)DLSYM(m_dllcore, "np2api_keydown");
+    if(!_np2api_keydown) {
+        fprintf(stderr, "np2api_keydown func resolve ERROR\n");
         unload();
         return false;
     }

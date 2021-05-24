@@ -74,3 +74,4 @@ wxNP21kaiM.exe
 *.mo
 *.pot
 locale/
+depends

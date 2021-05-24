@@ -14,6 +14,8 @@ protected:
 	virtual void OnIdle( wxIdleEvent& event );
 	virtual void OnKeyDown( wxKeyEvent& event );
 	virtual void OnShow( wxShowEvent& event );
+	virtual void OnKeyUp( wxKeyEvent& event );
+	virtual void OnExit( wxCommandEvent& event );
 
 public:
 	wxNP21kaiMFrame(wxWindow* parent);

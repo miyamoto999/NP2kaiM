@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 
 # docフォルダにあるpc-98key.drawioをxmlでエクスポートしたpc-98key.xmlを
-# Qt用のC言語ソースに変換する。
+# QtまたはwxWidgets用のC言語ソースに変換する。
 import xml.etree.ElementTree as ET
 import copy
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--wx', action='store_true')
+args = parser.parse_args()
 
 # 矩形クラス
 class Rect:
@@ -71,7 +76,7 @@ uniSortedKeydatas = sorted(uniKeydatas, key=lambda d:d.keycode)
 print('enum _keycode98 {')
 for data in uniSortedKeydatas:
     print('\t' + data.keyname + ' = ' + hex(data.keycode) + ', ')
-print('tKEYCODE98_NC = 0xff,')
+print('\tKEYCODE98_NC = 0xff,')
 print('};')
 
 print()
@@ -80,25 +85,48 @@ print()
 sortedKeydatas = sorted(movedKeydatas, key=lambda d:d.keycode)
 print("KEYDATA keydatas[] ={")
 for data in sortedKeydatas:
-    print('\t{ QString("', end='')
-    print(data.keyname, end='')
-    print('")', end=', ')
-    print('QString("', end='')
-    print(data.keytop.replace("\\", "\\\\"), end='')
-    print('")', end=', ')
-    print(data.keyname, end=', ')
-    print('QRect(', end='')
-    print(data.rect.x, end=', ')
-    print(data.rect.y, end=', ')
-    print(data.rect.width, end=', ')
-    print(data.rect.height, end='), ')
-    print('0', end=', ')
-    print('Qt::NoModifier', end=', ')
-    print('0', end=', ')
-    print('0', end=', ')
-    print('0', end=', ')
-    print('0', end=' }')
-    print(",")
-print("\t{ QString(), QString(), 0, QRect(-1,-1,-1,-1), 0, Qt::NoModifier, 0, 0, 0, 0 }")
+    if args.wx :
+        print('\t{ wxString("', end='')
+        print(data.keyname, end='')
+        print('")', end=', ')
+        print('wxString("', end='')
+        print(data.keytop.replace("\\", "\\\\"), end='')
+        print('")', end=', ')
+        print(data.keyname, end=', ')
+        print('wxRect(', end='')
+        print(data.rect.x, end=', ')
+        print(data.rect.y, end=', ')
+        print(data.rect.width, end=', ')
+        print(data.rect.height, end='), ')
+        print('0', end=', ')
+        print('0', end=', ')
+        print('0', end=', ')
+        print('0', end=', ')
+        print('0', end=' }')
+        print(",")
+    else:
+        print('\t{ QString("', end='')
+        print(data.keyname, end='')
+        print('")', end=', ')
+        print('QString("', end='')
+        print(data.keytop.replace("\\", "\\\\"), end='')
+        print('")', end=', ')
+        print(data.keyname, end=', ')
+        print('QRect(', end='')
+        print(data.rect.x, end=', ')
+        print(data.rect.y, end=', ')
+        print(data.rect.width, end=', ')
+        print(data.rect.height, end='), ')
+        print('0', end=', ')
+        print('Qt::NoModifier', end=', ')
+        print('0', end=', ')
+        print('0', end=', ')
+        print('0', end=', ')
+        print('0', end=' }')
+        print(",")
+if args.wx :
+    print("\t{ wxString(), wxString(), 0, wxRect(-1,-1,-1,-1), 0, 0, 0, 0, 0 }")
+else:
+    print("\t{ QString(), QString(), 0, QRect(-1,-1,-1,-1), 0, Qt::NoModifier, 0, 0, 0, 0 }")
 print("};")
 

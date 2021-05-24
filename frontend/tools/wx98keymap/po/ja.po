@@ -1,0 +1,151 @@
+# Japanese translations for PACKAGE package
+# PACKAGE パッケージに対する英訳.
+# Copyright (C) 2021 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# <EMAIL@ADDRESS>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-22 16:42+0900\n"
+"PO-Revision-Date: 2021-05-05 00:51+0900\n"
+"Last-Translator: EMAIL@ADDRESS\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CP932\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 2.4.3\n"
+
+#: inputkeydialog.cpp:97 inputkeyframe.cpp:67
+msgid "Enter the key."
+msgstr "キー入力してください。"
+
+#: wx98keymap.cpp:134 wx98keymap.cpp:204 wx98keymap.cpp:236
+msgid ""
+"Your changes have not been saved yet.\n"
+"Are you sure?"
+msgstr ""
+"変更がまだ保存されていません。\n"
+"よろしいですか？"
+
+#: wx98keymap.cpp:134 wx98keymap.cpp:139 wx98keymap.cpp:144
+msgid "Open"
+msgstr "開く"
+
+#: wx98keymap.cpp:139 wx98keymap.cpp:183
+msgid "Text file(*.txt)|*.txt"
+msgstr "テキストファイル(*.txt)|*.txt"
+
+#: wx98keymap.cpp:144
+msgid "File Open ERROR"
+msgstr "ファイルオープンエラー"
+
+#: wx98keymap.cpp:167 wx98keymap.cpp:186
+msgid "File save ERROR"
+msgstr "ファイル保存エラー"
+
+#: wx98keymap.cpp:167 wx98keymap.cpp:183
+msgid "Save"
+msgstr "保存"
+
+#: wx98keymap.cpp:186
+msgid "Save As"
+msgstr "名前を付けて保存"
+
+#: wx98keymap.cpp:204 wx98keymap.cpp:237
+msgid "Close"
+msgstr "閉じる"
+
+#: wx98keymapForms.cpp:27
+msgid "KeyCode:"
+msgstr ""
+
+#: wx98keymapForms.cpp:31 wx98keymapForms.cpp:39 wx98keymapForms.cpp:47
+#: wx98keymapForms.cpp:55 wx98keymapForms.cpp:63 wx98keymapForms.cpp:150
+#: wx98keymapForms.cpp:158 wx98keymapForms.cpp:166 wx98keymapForms.cpp:174
+#: wx98keymapForms.cpp:182
+msgid "0"
+msgstr ""
+
+#: wx98keymapForms.cpp:35 wx98keymapForms.cpp:154
+msgid "modifiers:"
+msgstr ""
+
+#: wx98keymapForms.cpp:43
+msgid "RawKeyCode:"
+msgstr ""
+
+#: wx98keymapForms.cpp:51
+msgid "RawKeyFlags:"
+msgstr ""
+
+#: wx98keymapForms.cpp:59
+msgid "UnicodeKey:"
+msgstr ""
+
+#: wx98keymapForms.cpp:76
+msgid "&Open..."
+msgstr "開く(&O)..."
+
+#: wx98keymapForms.cpp:80
+msgid "&Save"
+msgstr "保存(&S)"
+
+#: wx98keymapForms.cpp:84
+msgid "Save &As..."
+msgstr "名前を付けて保存(&A)..."
+
+#: wx98keymapForms.cpp:88
+msgid "&Close"
+msgstr "閉じる(&C)"
+
+#: wx98keymapForms.cpp:92
+msgid "&Quit"
+msgstr "終了(&Q)"
+
+#: wx98keymapForms.cpp:95
+msgid "&File"
+msgstr "ファイル(&F)"
+
+#: wx98keymapForms.cpp:138
+msgid "Keyname:"
+msgstr ""
+
+#: wx98keymapForms.cpp:142
+msgid "KEY"
+msgstr ""
+
+#: wx98keymapForms.cpp:146
+msgid "key:"
+msgstr ""
+
+#: wx98keymapForms.cpp:162
+msgid "rawKeyCode:"
+msgstr ""
+
+#: wx98keymapForms.cpp:170
+msgid "rawKeyFlags:"
+msgstr ""
+
+#: wx98keymapForms.cpp:178
+msgid "rawUnicodeKey:"
+msgstr ""
+
+#: wx98keymapForms.cpp:186
+msgid "Input Key"
+msgstr "キー入力"
+
+#: wx98keymapForms.cpp:189
+msgid "Delete key binding"
+msgstr "キーバインド削除"
+
+#: wx98keymapForms.h:69
+msgid "wx98Keymap"
+msgstr ""
+
+#: wx98keymapForms.h:110
+msgid "KeyDialog"
+msgstr ""

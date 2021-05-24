@@ -33,9 +33,7 @@ xnp21kai_HAXM
 xnp2kai.1*
 xnp21kai.1*
 build
-build_win
-build_mac
-build_linux
+build_*
 frontend/build-*
 
 

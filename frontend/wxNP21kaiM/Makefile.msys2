@@ -3,8 +3,8 @@ TARGET=wxNP21kaiM
 CXX=$(shell wx-config --cxx)
 CXXFLAGS+=$(shell wx-config --cxxflags)
 #CPPFLAGS=$(CXXFLAGS)
-LDCONFIG=$(shell wx-config --libs) -ldl
-# LDCONFIG=$(shell wx-config --libs)
+# LDCONFIG=$(shell wx-config --libs) -ldl
+LDCONFIG=$(shell wx-config --libs)
 POT=$(TARGET).pot
 
 all:$(TARGET)

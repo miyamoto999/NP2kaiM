@@ -1,10 +1,12 @@
-OBJS=wxNP21kaiMBaseFrame.o wxNP21kaiMFrame.o wxNP21kaiMApp.o np2kaiapi.o kbddrv.o
-TARGET=wxNP21kaiM
+OBJS=wx98keymapForms.o wx98keymap.o wx98KeymapApp.o keywidget.o keydata.o keydialog.o \
+		inputkeydialog.o inputkeyframe.o
+TARGET=wx98keymap
 CXX=$(shell wx-config --cxx)
+CXXFLAGS=-O2 -Wall
 CXXFLAGS+=$(shell wx-config --cxxflags)
 #CPPFLAGS=$(CXXFLAGS)
-LDCONFIG=$(shell wx-config --libs) -ldl
-# LDCONFIG=$(shell wx-config --libs)
+#LDCONFIG=$(shell wx-config --libs) -lld
+LDCONFIG=$(shell wx-config --libs)
 POT=$(TARGET).pot
 
 all:$(TARGET)
@@ -27,7 +29,7 @@ update-po:$(POT) po/ja.po
 
 init-po:
 	xgettext -k_ -kN_ -d $(TARGET) -o $(POT) *.cpp *.h
-	mkdir po
+	mkdir -p po
 	msginit --locale ja_JP.UTF-8 --input $(POT) --output po/ja.po
 
 clean:
@@ -35,5 +37,6 @@ clean:
 
 depend:
 	$(CXX) $(CXXFLAGS) -E -MM -w *.cpp > depends
+
 
 -include depends

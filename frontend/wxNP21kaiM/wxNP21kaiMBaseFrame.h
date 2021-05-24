@@ -10,7 +10,6 @@
 #include <wx/artprov.h>
 #include <wx/xrc/xmlres.h>
 #include <wx/intl.h>
-#include <wx/panel.h>
 #include <wx/gdicmn.h>
 #include <wx/font.h>
 #include <wx/colour.h>
@@ -34,7 +33,7 @@ class wxNP21kaiMBaseFrame : public wxFrame
 	private:
 
 	protected:
-		wxPanel* m_panel1;
+		wxControl* m_np2widget;
 		wxMenuBar* m_menubar1;
 		wxMenu* m_menu1;
 
@@ -42,6 +41,7 @@ class wxNP21kaiMBaseFrame : public wxFrame
 		virtual void OnClose( wxCloseEvent& event ) { event.Skip(); }
 		virtual void OnIdle( wxIdleEvent& event ) { event.Skip(); }
 		virtual void OnKeyDown( wxKeyEvent& event ) { event.Skip(); }
+		virtual void OnKeyUp( wxKeyEvent& event ) { event.Skip(); }
 		virtual void OnShow( wxShowEvent& event ) { event.Skip(); }
 		virtual void OnExit( wxCommandEvent& event ) { event.Skip(); }
 

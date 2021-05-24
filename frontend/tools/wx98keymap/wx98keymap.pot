@@ -1,0 +1,147 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-22 16:42+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: inputkeydialog.cpp:97 inputkeyframe.cpp:67
+msgid "Enter the key."
+msgstr ""
+
+#: wx98keymap.cpp:134 wx98keymap.cpp:204 wx98keymap.cpp:236
+msgid ""
+"Your changes have not been saved yet.\n"
+"Are you sure?"
+msgstr ""
+
+#: wx98keymap.cpp:134 wx98keymap.cpp:139 wx98keymap.cpp:144
+msgid "Open"
+msgstr ""
+
+#: wx98keymap.cpp:139 wx98keymap.cpp:183
+msgid "Text file(*.txt)|*.txt"
+msgstr ""
+
+#: wx98keymap.cpp:144
+msgid "File Open ERROR"
+msgstr ""
+
+#: wx98keymap.cpp:167 wx98keymap.cpp:186
+msgid "File save ERROR"
+msgstr ""
+
+#: wx98keymap.cpp:167 wx98keymap.cpp:183
+msgid "Save"
+msgstr ""
+
+#: wx98keymap.cpp:186
+msgid "Save As"
+msgstr ""
+
+#: wx98keymap.cpp:204 wx98keymap.cpp:237
+msgid "Close"
+msgstr ""
+
+#: wx98keymapForms.cpp:27
+msgid "KeyCode:"
+msgstr ""
+
+#: wx98keymapForms.cpp:31 wx98keymapForms.cpp:39 wx98keymapForms.cpp:47
+#: wx98keymapForms.cpp:55 wx98keymapForms.cpp:63 wx98keymapForms.cpp:150
+#: wx98keymapForms.cpp:158 wx98keymapForms.cpp:166 wx98keymapForms.cpp:174
+#: wx98keymapForms.cpp:182
+msgid "0"
+msgstr ""
+
+#: wx98keymapForms.cpp:35 wx98keymapForms.cpp:154
+msgid "modifiers:"
+msgstr ""
+
+#: wx98keymapForms.cpp:43
+msgid "RawKeyCode:"
+msgstr ""
+
+#: wx98keymapForms.cpp:51
+msgid "RawKeyFlags:"
+msgstr ""
+
+#: wx98keymapForms.cpp:59
+msgid "UnicodeKey:"
+msgstr ""
+
+#: wx98keymapForms.cpp:76
+msgid "&Open..."
+msgstr ""
+
+#: wx98keymapForms.cpp:80
+msgid "&Save"
+msgstr ""
+
+#: wx98keymapForms.cpp:84
+msgid "Save &As..."
+msgstr ""
+
+#: wx98keymapForms.cpp:88
+msgid "&Close"
+msgstr ""
+
+#: wx98keymapForms.cpp:92
+msgid "&Quit"
+msgstr ""
+
+#: wx98keymapForms.cpp:95
+msgid "&File"
+msgstr ""
+
+#: wx98keymapForms.cpp:138
+msgid "Keyname:"
+msgstr ""
+
+#: wx98keymapForms.cpp:142
+msgid "KEY"
+msgstr ""
+
+#: wx98keymapForms.cpp:146
+msgid "key:"
+msgstr ""
+
+#: wx98keymapForms.cpp:162
+msgid "rawKeyCode:"
+msgstr ""
+
+#: wx98keymapForms.cpp:170
+msgid "rawKeyFlags:"
+msgstr ""
+
+#: wx98keymapForms.cpp:178
+msgid "rawUnicodeKey:"
+msgstr ""
+
+#: wx98keymapForms.cpp:186
+msgid "Input Key"
+msgstr ""
+
+#: wx98keymapForms.cpp:189
+msgid "Delete key binding"
+msgstr ""
+
+#: wx98keymapForms.h:69
+msgid "wx98Keymap"
+msgstr ""
+
+#: wx98keymapForms.h:110
+msgid "KeyDialog"
+msgstr ""

@@ -7,12 +7,23 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('filename')
 parser.add_argument('--scancode', '-s', action='store_true')
+parser.add_argument('--wx', action='store_true')
+parser.add_argument('--win', action='store_true')
+parser.add_argument('--linux', action='store_true')
 args = parser.parse_args()
 
-if args.scancode == True:
-    data_index = 6
+if args.wx == True:
+    DATA_TYPE = 'uint8_t'
+    if args.win == True:
+        data_index = 6
+    else:
+        data_index = 5
 else:
-    data_index = 7
+    DATA_TYPE = 'quint8'
+    if args.scancode == True:
+        data_index = 6
+    else:
+        data_index = 7
 FLAG_INDEX = 2
 KEYNAME_INDEX = 0
 
@@ -27,6 +38,8 @@ for line in lines:
     datas = line.split('\t')
     if int(datas[FLAG_INDEX]) == 1:
         code = int(datas[data_index])
+        if args.win == True:
+            code = (code >> 16) & 0x1ff
         if code > 0xffff:
             continue
         key = (code >> 8) & 0xff
@@ -38,7 +51,7 @@ for line in lines:
 sorted_keys = sorted(transtable_dic.keys())
 
 for key in sorted_keys:
-    print('static const quint8 trans_table106_{:02x}[] = '.format(key), end='')
+    print('static const {:s} trans_table106_{:02x}[] = '.format(DATA_TYPE, key), end='')
     print('{')
     for i in range(0, 32):
         print('\t', end='')
@@ -49,7 +62,8 @@ for key in sorted_keys:
     print('};')
     print()
 
-print('static const quint8 *trans_table106[] = {')
+print('static const {:s} *trans_table106[] = '.format(DATA_TYPE), end='')
+print('{')
 for i in range(0, 32):
     print('\t', end='')
     for j in range(0, 8):

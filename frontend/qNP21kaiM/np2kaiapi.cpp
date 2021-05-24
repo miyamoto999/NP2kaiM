@@ -16,11 +16,14 @@ bool NP2kaiapi::load()
     QLibrary dllcore("libNP21kaiM_core.so");
 
     if(!dllcore.load()) {
-        dllcore.setFileName("NP21kaiM_core");
+        dllcore.setFileName("./libNP21kaiM_core.so");
         if(!dllcore.load()) {
-            fprintf(stderr, "NP21kaiM_core DLL load ERROR\n");
-            unload();
-            return false;
+            dllcore.setFileName("NP21kaiM_core");
+            if(!dllcore.load()) {
+                fprintf(stderr, "NP21kaiM_core DLL load ERROR\n");
+                unload();
+                return false;
+            }
         }
     }
 

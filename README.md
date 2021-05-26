@@ -1,4 +1,4 @@
-**2021/3/28更新**
+**2021/5/27更新**
 
 [Neko Project II kai](https://github.com/AZO234/NP2kai)をforkして、MacBook Proの内蔵キーボードでそこそこ使いやすいようにキーマップを変更して勝手に追加してみた。(SDLのみ)
 
@@ -70,6 +70,9 @@ MS-DOSメインで使っていると、起動直後からマウスカーソル�
 - \[SDL-Windows] MSYS2のターミナル内で実行すると環境変数$HOMEが設定されているのでLinuxやmacOSと同じように$HOME/.config/sdlnp21kai/から設定ファイルなどを読み込むようになる。
 
 ## 更新履歴(うちで勝手に更新してるヤツ)
+- 2021/5/27
+  - \[X11] PCI optionの設定が設定ファイルに保存されないのを改修
+
 - 2021/3/28
   - \[SDL-Windows] 環境変数$HOMEが設定されている場合、$HOME/.config/sdlnp21kai/から設定ファイルなどを読み込むように変更した。
   - \[SDL-Windows] --configオプションを効くようにした。
